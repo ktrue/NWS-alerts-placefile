@@ -1,0 +1,288 @@
+make-NWS-zones-index.php - V1.00 - 02-Sep-2023
+Run on Sat, 02 Sep 2023 20:04:35 -0700
+Output file: NWS-zones-inc-202308-test.txt
+
+..loading fcstZones from ./shapefiles/z_19se23.shp
+-------------------------------------------------
+Shapefile: fcstZones in ./shapefiles/z_19se23.shp
+
+Shape Type : 5 - Polygon
+Records : 4045
+Charset : ISO-8859-1
+Bounding Box : Array
+(
+    [xmin] => -179.147338754
+    [xmax] => 179.77848
+    [ymin] => -14.559737821
+    [ymax] => 71.3896038
+)
+
+
+Projections : GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],VERTCS["NAD_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PARAMETER["Vertical_Shift",0.0],PARAMETER["Direction",1.0],UNIT["Meter",1.0]]
+
+DBF Fields : {"STATE":{"type":"C","size":2,"decimals":0},"CWA":{"type":"C","size":9,"decimals":0},"TIME_ZONE":{"type":"C","size":2,"decimals":0},"FE_AREA":{"type":"C","size":2,"decimals":0},"ZONE":{"type":"C","size":3,"decimals":0},"NAME":{"type":"C","size":254,"decimals":0},"STATE_ZONE":{"type":"C","size":5,"decimals":0},"LON":{"type":"F","size":19,"decimals":11},"LAT":{"type":"F","size":19,"decimals":11},"SHORTNAME":{"type":"C","size":32,"decimals":0}}
+
+Sample records:
+STATE|CWA|TIME_ZONE|FE_AREA|ZONE|NAME|STATE_ZONE|LON|LAT|SHORTNAME
+AL|BMX|C|ec|019|Calhoun|AL019|-8.58261000000e+01|3.37714000000e+01|Calhoun
+AL|MOB|C|sc|057|Butler|AL057|-8.66803000000e+01|3.17524000000e+01|Butler
+AL|BMX|C|se|046|Bullock|AL046|-8.57161000000e+01|3.21005000000e+01|Bullock
+AL|BMX|C|cc|017|Blount|AL017|-8.65674000000e+01|3.39809000000e+01|Blount
+AL|BMX|C|cc|034|Bibb|AL034|-8.71264000000e+01|3.29986000000e+01|Bibb
+
+
+..timezones found/counts:
+ Code	Count   as
+ 'A'	84	as America/Anchorage
+ 'C'	1599	as America/Chicago
+ 'CE'	3	as America/Chicago
+ 'CM'	5	as America/Chicago
+ 'E'	1433	as America/New_York
+ 'F'	9	as Pacific/Fiji
+ 'G'	22	as Pacific/Guam
+ 'H'	43	as Pacific/Honolulu
+ 'J'	9	as Asia/Tokyo
+ 'K'	9	as Pacific/Kwajalein
+ 'M'	433	as America/Denver
+ 'MC'	1	as America/Denver
+ 'MP'	5	as America/Los_Angeles
+ 'Mm'	9	as America/Denver
+ 'P'	298	as America/Los_Angeles
+ 'S'	4	as Pacific/Pago_Pago
+ 'V'	15	as America/St_Thomas
+ 'h'	2	as America/Adak
+ 'm'	62	as America/Phoenix
+  19 codes found.
+
+.. 3957 F zones added with 0 duplicate zones appended.
+
+..loading countyZones from ./shapefiles/c_19se23.shp
+-------------------------------------------------
+Shapefile: countyZones in ./shapefiles/c_19se23.shp
+
+Shape Type : 5 - Polygon
+Records : 3360
+Charset : ISO-8859-1
+Bounding Box : Array
+(
+    [xmin] => -179.147338754
+    [xmax] => 179.77848
+    [ymin] => -14.559737821
+    [ymax] => 71.389610291
+)
+
+
+Projections : GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.017453292519943295],VERTCS["NAD_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PARAMETER["Vertical_Shift",0.0],PARAMETER["Direction",1.0],UNIT["Meter",1.0]]]
+
+DBF Fields : {"STATE":{"type":"C","size":2,"decimals":0},"CWA":{"type":"C","size":9,"decimals":0},"COUNTYNAME":{"type":"C","size":24,"decimals":0},"FIPS":{"type":"C","size":5,"decimals":0},"TIME_ZONE":{"type":"C","size":2,"decimals":0},"FE_AREA":{"type":"C","size":2,"decimals":0},"LON":{"type":"N","size":19,"decimals":11},"LAT":{"type":"N","size":19,"decimals":11}}
+
+Sample records:
+STATE|CWA|COUNTYNAME|FIPS|TIME_ZONE|FE_AREA|LON|LAT
+ME|CAR|Washington|23029|E|se|-67.63610000000|45.03630000000
+GA|CHS|McIntosh|13191|E|se|-81.26460000000|31.53290000000
+GA|CHS|Liberty|13179|E|se|-81.21030000000|31.70930000000
+AS|PPG|Swains Island|60040|S||-171.08020000000|-11.05480000000
+AS|PPG|Manu'a|60020|S||-169.50600000000|-14.22190000000
+
+
+.. GAC087 added 1075|Decatur, GA|30.7994|-84.7577|E	1076|Decatur, GA|30.8815|-84.5720|E
+.. SCC019 added 1078|Charleston, SC|32.6714|-80.1831|E	1079|Charleston, SC|32.8411|-79.9439|E
+.. GAC253 added 1080|Seminole, GA|30.7935|-84.8812|E	1081|Seminole, GA|30.9481|-84.8681|E
+.. GAC179 added 3|Liberty, GA|31.7093|-81.2103|E	1092|Liberty, GA|31.8308|-81.4998|E
+.. GAC051 added 1109|Chatham, GA|32.0099|-81.1416|E	1110|Chatham, GA|31.9297|-81.0394|E
+.. GAC191 added 2|McIntosh, GA|31.5329|-81.2646|E	1115|McIntosh, GA|31.5007|-81.4149|E
+.. MDC009 added 1190|Calvert, MD|38.5529|-76.5696|E	1194|Calvert, MD|38.3838|-76.4805|E
+.. MDC037 added 1193|St. Marys, MD|38.3052|-76.6076|E	1196|St. Marys, MD|38.2729|-76.6202|E
+.. MDC017 added 1197|Charles, MD|38.5077|-76.9899|E	1202|Charles, MD|38.3930|-76.9809|E
+.. VAC099 added 1198|King George, VA|38.2729|-77.1572|E	1203|King George, VA|38.3151|-77.0516|E
+.. VAC179 added 1201|Stafford, VA|38.4213|-77.4603|E	1204|Stafford, VA|38.3825|-77.3287|E
+.. VAC153 added 1200|Prince William, VA|38.7037|-77.4821|E	1205|Prince William, VA|38.5711|-77.2826|E
+.. MDC510 added 1192|Baltimore City, MD|39.3087|-76.6163|E	1206|Baltimore City, MD|39.2531|-76.5758|E
+.. VAC059 added 1199|Fairfax, VA|38.8385|-77.2788|E	1208|Fairfax, VA|38.6971|-77.1788|E
+.. GAC029 added 1107|Bryan, GA|32.0175|-81.4474|E	1243|Bryan, GA|31.7798|-81.1919|E
+.. SCC043 added 1246|Georgetown, SC|33.2834|-79.2353|E	1247|Georgetown, SC|33.4408|-79.3367|E
+.. NCC129 added 1248|New Hanover, NC|34.1047|-77.8921|E	1250|New Hanover, NC|34.2422|-77.8846|E
+.. NCC019 added 1249|Brunswick, NC|33.9633|-78.0599|E	1251|Brunswick, NC|34.0747|-78.2441|E
+.. NCC141 added 1254|Pender, NC|34.5255|-77.9070|E	1255|Pender, NC|34.3860|-77.6199|E
+.. MDC041 added 1511|Talbot, MD|38.7767|-76.0892|E	1512|Talbot, MD|38.7175|-76.1393|E
+.. VAC710 added 1514|City of Norfolk, VA|36.8313|-76.2711|E	1516|City of Norfolk, VA|36.8966|-76.2552|E
+.. MIC127 added 1566|Oceana, MI|43.6407|-86.2673|E	1567|Oceana, MI|43.7692|-86.4212|E
+.. MIC121 added 1568|Muskegon, MI|43.2912|-86.1481|E	1569|Muskegon, MI|43.2922|-86.3219|E
+.. MIC139 added 1570|Ottawa, MI|42.9435|-86.1799|E	1571|Ottawa, MI|42.9601|-85.9939|E
+.. MIC105 added 1565|Mason, MI|43.9954|-86.2497|E	1594|Mason, MI|43.9392|-86.4421|E
+.. FLC115 added 2008|Sarasota, FL|27.1810|-82.3219|E	2009|Sarasota, FL|27.0267|-82.2770|E
+.. FLC063 added 2330|Jackson, FL|30.7956|-85.2194|C	2331|Jackson, FL|30.7800|-84.9213|C
+.. FLC045 added 2333|Gulf, FL|29.9458|-85.1435|CE	2359|Gulf, FL|29.9562|-85.2283|CE
+.. FLC071 added 2373|Lee, FL|26.5786|-81.8210|E	2374|Lee, FL|26.6135|-81.8902|E
+.. FLC015 added 2375|Charlotte, FL|26.9069|-81.8940|E	2376|Charlotte, FL|26.9689|-82.1080|E
+.. FLC087 added 2006|Mainland Monroe, FL|25.5205|-81.0326|E	2377|Lower Keys in Monroe, FL|24.6514|-81.5527|E
+.. FLC087 added 2006|Mainland Monroe, FL|25.5205|-81.0326|E	2377|Lower Keys in Monroe, FL|24.6514|-81.5527|E	2378|Middle Keys in Monroe, FL|24.7471|-80.9876|E
+.. FLC087 added 2006|Mainland Monroe, FL|25.5205|-81.0326|E	2377|Lower Keys in Monroe, FL|24.6514|-81.5527|E	2378|Middle Keys in Monroe, FL|24.7471|-80.9876|E	2379|Upper Keys in Monroe, FL|25.1496|-80.4175|E
+.. FLC131 added 2366|Walton, FL|30.6598|-86.1631|C	2382|Walton, FL|30.5448|-85.8977|C
+.. TXC201 added 2837|Harris, TX|29.8588|-95.3963|C	2838|Harris, TX|29.7371|-95.1819|C
+.. FLC103 added 2007|Pinellas, FL|27.9280|-82.7220|E	3103|Pinellas, FL|28.1264|-82.7303|E
+.. FLC075 added 3108|Levy, FL|29.2827|-83.0885|E	3109|Levy, FL|29.3216|-82.7389|E
+.. FLC017 added 3110|Citrus, FL|28.8509|-82.4670|E	3111|Citrus, FL|28.8125|-82.6088|E
+.. FLC081 added 3114|Manatee, FL|27.4713|-82.2978|E	3115|Manatee, FL|27.5051|-82.5210|E
+.. FLC057 added 3116|Hillsborough, FL|27.9306|-82.3072|E	3117|Hillsborough, FL|27.7786|-82.4146|E
+.. FLC037 added 2360|Franklin, FL|29.8773|-84.8172|E	3118|Franklin, FL|29.9194|-84.6607|E
+.. SCC053 added 1244|Jasper, SC|32.4371|-81.0321|E	3121|Jasper, SC|32.4045|-80.8545|E
+.. FLC129 added 3104|Wakulla, FL|30.1703|-84.4026|E	3129|Wakulla, FL|30.0061|-84.4749|E
+.. SCC013 added 3132|Beaufort, SC|32.3568|-80.6934|E	3133|Beaufort, SC|32.3873|-80.7372|E
+.. MDC025 added 1189|Harford, MD|39.5616|-76.3194|E	3144|Harford, MD|39.5818|-76.1813|E
+.. MDC033 added 1207|Prince Georges, MD|38.7014|-77.0099|E	3147|Prince Georges, MD|38.8313|-76.8436|E
+.. MDC005 added 3145|Baltimore, MD|39.2950|-76.4054|E	3148|Baltimore, MD|39.4664|-76.6448|E
+.. MDC003 added 1195|Anne Arundel, MD|38.9332|-76.5279|E	3149|Anne Arundel, MD|39.0074|-76.6088|E
+.. VAC036 added 3164|Charles City, VA|37.3565|-77.0613|E	3169|Charles City, VA|37.2385|-76.9028|E
+.. VAC159 added 3165|Richmond, VA|37.9429|-76.7249|E	3171|Richmond, VA|37.8881|-76.7671|E
+.. VAC057 added 3170|Essex, VA|37.9426|-76.9518|E	3172|Essex, VA|37.8958|-76.8079|E
+.. NCC091 added 3150|Hertford, NC|36.3590|-76.9837|E	3173|Hertford, NC|36.3111|-76.7495|E
+.. MDC047 added 3179|Worcester, MD|38.1195|-75.4976|E	3180|Worcester, MD|38.2186|-75.3568|E
+.. NCC015 added 3174|Bertie, NC|36.1197|-76.7246|E	3183|Bertie, NC|36.0662|-76.9791|E
+.. VAC710 added 1514|City of Norfolk, VA|36.8313|-76.2711|E	1516|City of Norfolk, VA|36.8966|-76.2552|E	3186|City of Norfolk, VA|36.8889|-76.3096|E
+.. VAC115 added 3191|Mathews, VA|37.4368|-76.3444|E	3192|Mathews, VA|37.4632|-76.3392|E
+.. VAC133 added 3190|Northumberland, VA|37.8875|-76.4233|E	3194|Northumberland, VA|37.9686|-76.4378|E
+.. VAC095 added 3185|James City, VA|37.3296|-76.7782|E	3196|James City, VA|37.2297|-76.8324|E
+.. VAC800 added 3188|City of Suffolk, VA|36.6926|-76.6417|E	3198|City of Suffolk, VA|36.8717|-76.5046|E
+.. VAC119 added 3200|Middlesex, VA|37.6353|-76.5769|E	3201|Middlesex, VA|37.6424|-76.5151|E
+.. VAC073 added 3195|Gloucester, VA|37.3643|-76.4883|E	3202|Gloucester, VA|37.4257|-76.5431|E
+.. VAC103 added 3193|Lancaster, VA|37.7367|-76.4640|E	3206|Lancaster, VA|37.7189|-76.5300|E
+.. VAC181 added 3203|Surry, VA|37.1089|-76.9009|E	3207|Surry, VA|37.2113|-76.8566|E
+.. NCC053 added 3205|Currituck, NC|36.4011|-76.0141|E	3208|Currituck, NC|36.2197|-75.9184|E
+.. NCC029 added 3187|Camden, NC|36.3902|-76.2101|E	3209|Camden, NC|36.2239|-76.0277|E
+.. NCC139 added 3182|Pasquotank, NC|36.2974|-76.2867|E	3210|Pasquotank, NC|36.2046|-76.1331|E
+.. NCC143 added 3184|Perquimans, NC|36.2069|-76.4419|E	3211|Perquimans, NC|36.1410|-76.3487|E
+.. NCC041 added 3181|Chowan, NC|36.1507|-76.6080|E	3212|Chowan, NC|36.1513|-76.6914|E
+.. VAC740 added 1515|City of Portsmouth, VA|36.8449|-76.3548|E	3215|City of Portsmouth, VA|36.8698|-76.3466|E
+.. VAC650 added 3197|City of Hampton, VA|37.0958|-76.3307|E	3216|City of Hampton, VA|37.0533|-76.3674|E
+.. VAC735 added 3213|City of Poquoson, VA|37.1508|-76.3693|E	3218|City of Poquoson, VA|37.1323|-76.3578|E
+.. MDC019 added 3221|Dorchester, MD|38.5492|-76.1372|E	3223|Dorchester, MD|38.4797|-76.0083|E
+.. VAC193 added 3224|Westmoreland, VA|38.1366|-76.7252|E	3225|Westmoreland, VA|38.1108|-76.8052|E
+.. MDC045 added 3222|Wicomico, MD|38.3734|-75.6210|E	3226|Wicomico, MD|38.2520|-75.8431|E
+.. MDC039 added 3219|Somerset, MD|38.0910|-75.8241|E	3232|Somerset, MD|38.1190|-75.7449|E
+.. MDC035 added 1517|Queen Anne's, MD|38.9890|-76.1834|E	3259|Queen Anne's, MD|39.0738|-76.0131|E
+.. HIC007 added 3263|Niihau in Kauai, HI|21.8970|-160.1570|H	3264|Kauai in Kauai, HI|22.0614|-159.5270|H
+.. HIC009 added 3265|Kahoolawe in Maui, HI|20.5503|-156.6118|H	3266|Lanai in Maui, HI|20.8383|-156.9299|H
+.. HIC009 added 3265|Kahoolawe in Maui, HI|20.5503|-156.6118|H	3266|Lanai in Maui, HI|20.8383|-156.9299|H	3267|Maui in Maui, HI|20.7936|-156.3396|H
+.. HIC009 added 3265|Kahoolawe in Maui, HI|20.5503|-156.6118|H	3266|Lanai in Maui, HI|20.8383|-156.9299|H	3267|Maui in Maui, HI|20.7936|-156.3396|H	3268|Molokai in Maui, HI|21.1363|-157.0168|H
+.. VAC199 added 3214|York, VA|37.2045|-76.4684|E	3274|York, VA|37.2371|-76.5637|E
+.. MPC085 added 3300|Agrihan, MP|18.7710|145.6674|G	3301|Anatahan, MP|16.3519|145.6774|G
+.. MPC085 added 3300|Agrihan, MP|18.7710|145.6674|G	3301|Anatahan, MP|16.3519|145.6774|G	3302|Alamagan, MP|17.5998|145.8330|G
+.. MPC085 added 3300|Agrihan, MP|18.7710|145.6674|G	3301|Anatahan, MP|16.3519|145.6774|G	3302|Alamagan, MP|17.5998|145.8330|G	3303|Pagan, MP|18.1166|145.7666|G
+.. FMC001 added 3307|Pakin, FM|7.0649|157.8033|F	3309|Mwoakilloa, FM|6.6800|159.7581|F
+.. FMC001 added 3307|Pakin, FM|7.0649|157.8033|F	3309|Mwoakilloa, FM|6.6800|159.7581|F	3310|Sapwuahfik, FM|5.7990|157.2493|F
+.. FMC001 added 3307|Pakin, FM|7.0649|157.8033|F	3309|Mwoakilloa, FM|6.6800|159.7581|F	3310|Sapwuahfik, FM|5.7990|157.2493|F	3311|Nukuoro, FM|3.8531|154.9572|F
+.. FMC001 added 3307|Pakin, FM|7.0649|157.8033|F	3309|Mwoakilloa, FM|6.6800|159.7581|F	3310|Sapwuahfik, FM|5.7990|157.2493|F	3311|Nukuoro, FM|3.8531|154.9572|F	3314|Onoun, FM|8.5832|149.6884|G
+.. FMC001 added 3307|Pakin, FM|7.0649|157.8033|F	3309|Mwoakilloa, FM|6.6800|159.7581|F	3310|Sapwuahfik, FM|5.7990|157.2493|F	3311|Nukuoro, FM|3.8531|154.9572|F	3314|Onoun, FM|8.5832|149.6884|G	3321|Faraulep, FM|8.5900|144.5165|G
+.. MDC015 added 3253|Cecil, MD|39.5750|-75.9384|E	3329|Cecil, MD|39.5606|-76.0103|E
+.. MDC029 added 3254|Kent, MD|39.2574|-76.0362|E	3330|Kent, MD|39.1548|-76.1543|E
+..timezones found/counts:
+ Code	Count   as
+ 'A'	29	as America/Anchorage
+ 'Ah'	1	not defined in $NWStimeZones
+ 'C'	1492	as America/Chicago
+ 'CE'	2	as America/Chicago
+ 'CM'	5	as America/Chicago
+ 'E'	1226	as America/New_York
+ 'F'	9	as Pacific/Fiji
+ 'G'	22	as Pacific/Guam
+ 'H'	8	as Pacific/Honolulu
+ 'J'	9	as Asia/Tokyo
+ 'K'	9	as Pacific/Kwajalein
+ 'M'	286	as America/Denver
+ 'MC'	1	as America/Denver
+ 'MP'	2	as America/Los_Angeles
+ 'Mm'	3	as America/Denver
+ 'P'	158	as America/Los_Angeles
+ 'S'	5	as Pacific/Pago_Pago
+ 'V'	81	as America/St_Thomas
+ 'm'	12	as America/Phoenix
+  19 codes found.
+
+.. 3269 C zones added with 0 duplicate zones appended.
+
+..loading marineZones from ./shapefiles/mz19se23.shp
+-------------------------------------------------
+Shapefile: marineZones in ./shapefiles/mz19se23.shp
+
+Shape Type : 5 - Polygon
+Records : 565
+Charset : ISO-8859-1
+Bounding Box : Array
+(
+    [xmin] => -180
+    [xmax] => 180
+    [ymin] => -15.208283049
+    [ymax] => 72.599999511
+)
+
+
+Projections : GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.017453292519943295],VERTCS["NAD_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PARAMETER["Vertical_Shift",0.0],PARAMETER["Direction",1.0],UNIT["Meter",1.0]]]
+
+DBF Fields : {"ID":{"type":"C","size":6,"decimals":0},"WFO":{"type":"C","size":3,"decimals":0},"GL_WFO":{"type":"C","size":3,"decimals":0},"NAME":{"type":"C","size":254,"decimals":0},"LON":{"type":"N","size":19,"decimals":11},"LAT":{"type":"N","size":19,"decimals":11}}
+
+Sample records:
+ID|WFO|GL_WFO|NAME|LON|LAT
+PHZ113|HFO||Kauai Channel|-158.97240000000|21.61690000000
+PHZ112|HFO||Kauai Leeward Waters|-160.23140000000|21.66410000000
+GMZ155|BRO||Coastal waters from Baffin Bay to Port Mansfield TX out 20 NM|-97.15790000000|26.90680000000
+GMZ657|MFL||Coastal waters from East Cape Sable to Chokoloskee FL out 20 NM|-81.38950000000|25.45370000000
+GMZ656|MFL||Coastal waters from Chokoloskee to Bonita Beach FL out 20 NM|-81.87250000000|25.95370000000
+
+
+.. 565 M zones added with 0 duplicate zones appended.
+
+..loading fireZones from ./shapefiles/fz19se23.shp
+-------------------------------------------------
+Shapefile: fireZones in ./shapefiles/fz19se23.shp
+
+Shape Type : 5 - Polygon
+Records : 3574
+Charset : ISO-8859-1
+Bounding Box : Array
+(
+    [xmin] => -179.147354024
+    [xmax] => 179.778464744
+    [ymin] => -14.559737821
+    [ymax] => 71.3896038
+)
+
+
+Projections : GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],VERTCS["NAD_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PARAMETER["Vertical_Shift",0.0],PARAMETER["Direction",1.0],UNIT["Meter",1.0]]
+
+DBF Fields : {"STATE":{"type":"C","size":2,"decimals":0},"ZONE":{"type":"C","size":3,"decimals":0},"CWA":{"type":"C","size":3,"decimals":0},"NAME":{"type":"C","size":254,"decimals":0},"STATE_ZONE":{"type":"C","size":5,"decimals":0},"TIME_ZONE":{"type":"C","size":2,"decimals":0},"FE_AREA":{"type":"C","size":2,"decimals":0},"LON":{"type":"F","size":19,"decimals":11},"LAT":{"type":"F","size":19,"decimals":11}}
+
+Sample records:
+STATE|ZONE|CWA|NAME|STATE_ZONE|TIME_ZONE|FE_AREA|LON|LAT
+OR|639|PDT|East Slopes of the Northern Oregon Cascades|OR639|P|nc|-1.21400000000e+02|4.53804000000e+01
+OR|611|PDT|Deschutes National Forest - minus Sisters Ranger District|OR611|P|sw|-1.21505500000e+02|4.36707000000e+01
+OR|637|BOI|Vale BLM|OR637|P|se|-1.17621200000e+02|4.31807000000e+01
+OR|646|BOI|Baker Valley|OR646|P|ne|-1.17581700000e+02|4.46684000000e+01
+OR|644|PDT|Central Blue Mountains|OR644|P|ne|-1.18915400000e+02|4.49152000000e+01
+
+
+.. fixed NMZ119 TZ 'M' to be 'M' 
+..timezones found/counts:
+ Code	Count   as
+ 'A'	84	as America/Anchorage
+ 'C'	1578	as America/Chicago
+ 'CE'	3	as America/Chicago
+ 'CM'	5	as America/Chicago
+ 'E'	1329	as America/New_York
+ 'F'	9	as Pacific/Fiji
+ 'G'	22	as Pacific/Guam
+ 'H'	28	as Pacific/Honolulu
+ 'J'	9	as Asia/Tokyo
+ 'K'	9	as Pacific/Kwajalein
+ 'M'	226	as America/Denver
+ 'Mm'	8	as America/Denver
+ 'P'	224	as America/Los_Angeles
+ 'S'	4	as Pacific/Pago_Pago
+ 'V'	14	as America/St_Thomas
+ 'h'	2	as America/Adak
+ 'm'	20	as America/Phoenix
+  17 codes found.
+
+.. 3483 W zones added with 2971 duplicate zones appended.
+
+.. Done. 8307 entries saved to NWS-zones-inc-202308-test.txt
