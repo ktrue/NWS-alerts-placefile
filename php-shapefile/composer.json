@@ -1,0 +1,24 @@
+{
+    "name": "gasparesganga/php-shapefile",
+    "description": "PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON",
+    "type": "library",
+    "keywords": ["shapefile", "shape", "esri", "shp", "dbf", "wkt", "geojson"],
+    "homepage": "https://gasparesganga.com/labs/php-shapefile/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gaspare Sganga",
+            "email": "contact@gasparesganga.com",
+            "homepage": "https://gasparesganga.com/labs/php-shapefile/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shapefile\\": "src/Shapefile/"
+        }
+    }
+}
