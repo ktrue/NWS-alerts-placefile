@@ -187,10 +187,13 @@ Icon: 45.0045,-93.4768,0,1,52,"Heat Advisory\n\nSent:      02-Sep-2023 9:04pm CD
 
 ## Display samples with GRLevel3
 
+![areas](https://github.com/ktrue/NWS-alerts-placefile/assets/17507343/394f60dc-25e1-4bbb-8290-72876aa942b3)
 
+![marine-areas](https://github.com/ktrue/NWS-alerts-placefile/assets/17507343/365109f4-30d1-44db-b742-fc0a948afc57)
 
 ## Acknowledgements
 
 Special thanks to Mike Davis, W1ARN of the National Weather Service, Nashville TN office
-for his testing/feedback during development.   
+for his inspiration/testing/feedback during development.
+Also thanks to [Gaspare Sganga](https://gasparesganga.com/labs/php-shapefile/) for his excellent *php-shapefile* class scripts which allowed this script set to be built.   
 
