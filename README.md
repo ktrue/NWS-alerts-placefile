@@ -39,9 +39,11 @@ The distributed file is based on the September 19, 2023 shapefile release by the
 
 The script generates output using 1 icon file (*alerts-icons.png*) for area displays.  The outline display does not use any icons.
 
-If you run the script for debugging in a browser, add `?dpi=96&lat={latitude}&lon={longitude}` to
+If you run the script for debugging **in a browser**, add `?version=1.5&dpi=96&lat={latitude}&lon={longitude}` to
 the URL so it knows what to select for display.  The output of the script is always text/plain;charset=ISO-8859-1 for the placefile.
 Viewing the placefile in a browser will show GRLevel3 comments (lines starting with ';') showing how each alert is handled.
+
+In the GRLevel3 placefile manager window, just add the script URL without a query string -- GRLevel3 will automatically add those based on the current radar site selected.
 
 Additional documentation is in each script for further modification convenience.
 
@@ -137,6 +139,10 @@ $NWStimeZones = array (
 # -----------------------------------------------
 
 ```
+
+Please note that the default installation includes `$doLogging = true;` which enables logging of accesses 
+to <br> *NWS-placefile-log-{year}-{month}-{day}.txt* (UTC date) text files to the installation directory.
+These files are useful to help debugging, but you may want to switch them off by specifying `$doLogging = false;`.
 
 ## Sample *NWS_Placefile_Alerts.php* output:
 ```
