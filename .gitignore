@@ -1,0 +1,8 @@
+# ignore any shapefiles 
+#
+*.shp
+*.dbf
+*.prj
+*.shx
+*.zip
+#
