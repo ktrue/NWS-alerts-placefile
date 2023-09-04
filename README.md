@@ -78,10 +78,10 @@ to match the actual shapefiles being used.  A sample run of the utility is in th
 - *./shapefiles/*
   
 
-Then you can test the placefile script by using your browser to go to
-`https://your.website.com/placefiles/alert-areas.php?dpi=96&lat=37.0&lon=-122.0`
+Then you can test the placefile script by **using your browser** to go to<br>
+`https://your.website.com/placefiles/alert-areas.php?version=1.5&dpi=96&lat=37.0&lon=-122.0`
 
-If that returns a placefile, then add your placefile URL into the GRLevelX placefile
+If that returns a placefile, then add your placefile URL (minus the URL query string) into the GRLevelX placefile
 manager window.
 
 ## Settings in *NWS_Placefile_Alerts.php*
