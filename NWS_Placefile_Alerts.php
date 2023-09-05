@@ -11,8 +11,9 @@
 # Version 2.01 - 30-Aug-2023 - improved popup display and area display
 # Version 2.02 - 01-Sep-2023 - added icons to alert area displays (where available)
 # Versoon 2.04 - 02-Sep-2023 - added timezone times to popup display
+# Version 2.05 - 05-Sep-2023 - fix unclosed polygon info from shapefile
 
-$Version = "NWS_Placefile_Alerts.php - V2.03 - 02-Sep-2023 - initial release";
+$Version = "NWS_Placefile_Alerts.php - V2.05 - 05-Sep-2023 - initial release";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -853,6 +854,18 @@ function get_shape_coords ($zone) {
 			
 			if(strlen($lat)< 5 or strlen($lon) < 5) { break; }
 			$out .= sprintf("%01.6f",$lat).','.sprintf("%01.6f",$lon)."\n";
+		}
+		# ensure polygon is closed V2.05
+		$tCoords = explode("\n",$out);
+		$firstCoord = $tCoords[0];
+		$lastCoord  = array_pop($tCoords);
+		
+		if($firstCoord === $lastCoord) {
+			#nothing to fix
+			return($out);
+		} else {
+			# not matched .. add first coord to end
+			$out .= $firstCoord."\n";
 		}
 		
 		return($out);
