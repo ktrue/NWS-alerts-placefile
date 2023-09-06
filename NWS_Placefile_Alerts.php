@@ -12,8 +12,9 @@
 # Version 2.02 - 01-Sep-2023 - added icons to alert area displays (where available)
 # Versoon 2.04 - 02-Sep-2023 - added timezone times to popup display
 # Version 2.05 - 05-Sep-2023 - fix unclosed polygon info from shapefile
+# Version 2.06 - 05-Sep-2023 - replace $Geometry->getWKT() with $Geometry->getArray() processing
 
-$Version = "NWS_Placefile_Alerts.php - V2.05 - 05-Sep-2023 - initial release";
+$Version = "NWS_Placefile_Alerts.php - V2.06 - 05-Sep-2023";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -670,7 +671,7 @@ Icon: 2, 0, "... <alert text>"
 		$cLon = $v[4];
 		$TZ   = $v[5];
 		
-		$coords = get_shape_coords($zone); # this does a coordinate retrieval from the shapefile
+		list($coords,$errors) = get_shape_coords($zone); # this does a coordinate retrieval from the shapefile
 		$nCoords = explode("\n",$coords);
 		if($showDetails) {
 		  $coordsFrom = '\n(lines are around Zone '.$zone.')\n';
@@ -699,7 +700,7 @@ Icon: 2, 0, "... <alert text>"
 			$coords = '';
 			continue; # skip to next Zone
 		}
-		if(count($nCoords) < 2) {
+		if(count($nCoords) < 3) {
 			$out .= $prefix."; too few coordinates to plot on GRLevel3 for ".$UGC_array[0]." (".count($nCoords).") .. skipping.\n\n";
 			unset($nCoords);
 			continue; # skip to next Zone
@@ -711,6 +712,9 @@ Icon: 2, 0, "... <alert text>"
 		}
 		$out .= $prefix.str_replace("\"\n",$coordsFrom."\"\n",$tOut.$tCmd).$coords;
     $out .= "End:\n";
+		if(strlen($errors) > 0) {
+			$out .= $errors;
+		}
 
 		if(!$showDetails) { # Polygon.. place Icon after so it will show on top of area in GRLevel3
 		  $popup = str_replace($timeMarker,get_popup_local_times($P,$zone),$popup_template);
@@ -772,7 +776,9 @@ function get_shape_coords ($zone) {
 		list($db,$idx,$name,$clat,$clon) = explode('|',$zoneLookup[$zone]);
 		
 	} else {
-		return( "; get_shape_coords: '$zone' not found.\n");
+		return(array(
+		"; get_shape_coords: '$zone' not found.\n",
+		"; get_shape_coords: '$zone' not found.\n") );
 	}
 
   try {
@@ -793,17 +799,19 @@ function get_shape_coords ($zone) {
 				$Geometry = $Shapefile->fetchRecord();
 				// Skip deleted records
 				if ($Geometry->isDeleted()) {
-						return( "; get_shape_coords -- deleted record idx=$idx\n");
+						return( array(
+						"; get_shape_coords -- deleted record idx=$idx\n",
+						"; get_shape_coords -- deleted record idx=$idx\n" ));
 				}
 
-				$GDATA = $Geometry->getWKT();
+				$GDATA = $Geometry->getArray();
 				$vals = array();
         foreach ($fields as $i => $name) {
 					$vals[$name] = $Geometry->getData($name);
 				}
-				$GRdata = convert_to_lines($GDATA);
+				list($GRdata,$errors) = convert_array_to_lines($GDATA);
 				
-				return($GRdata);
+				return(array($GRdata,$errors));
 				
 		} catch (ShapefileException $e) {
 				// Handle some specific errors types or fallback to default
@@ -815,17 +823,19 @@ function get_shape_coords ($zone) {
 								
 						// Let's handle this case differently... :)
 						case Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION:
-								return("; get_shape_coords: Do you want the Earth to change its rotation direction?!?\n");
+								return(array(
+								"; get_shape_coords: Do you want the Earth to change its rotation direction?!?\n",
+								"; get_shape_coords: Do you want the Earth to change its rotation direction?!?\n",
+								));
 								break;
 								
 						// A fallback is always a nice idea
 						default:
-								return(
-										"; get_shape_coords: Error Type: "  . $e->getErrorType()
+						    $str = "; get_shape_coords: Error Type: "  . $e->getErrorType()
 										. " Message: " . $e->getMessage()
 										. " Details: " . $e->getDetails() 
-										. "\n"
-								);
+										. "\n";
+								return(array($str,$str));
 								break;
 				}
     }
@@ -833,44 +843,170 @@ function get_shape_coords ($zone) {
     /*
         Something went wrong during Shapefile opening!
     */
-		return (
+		return ( array(
+		  "; get_shape_coords: unable to open Shapefile $filename \n",
 		  "; get_shape_coords: unable to open Shapefile $filename \n"
-			);
+			));
   }
 	
 } # end get_shape_coords
 
 #---------------------------------------------------------------------------
 
-	function convert_to_lines($GDATA) {
+	function convert_to_lines_WKT($GDATA) {
+		$error = '';
 		$tstr = str_replace('POLYGON','',$GDATA);
 		$tstr = str_replace('MULTI','',$tstr);
 		$tstr = str_replace(array('(',')'),array('',''),$tstr);
 		$vals = explode(', ',$tstr.', ');
 		$out = "";
-		if(!isset($vals[0]) ) { return(""); }
+		if(!isset($vals[0]) ) { return(array("","; data not found\n")); }
 		foreach ($vals as $i => $v) {
+			if(empty($v)) { continue;}
 			list($lon,$lat) = explode(' ',$v.' ');
 			
-			if(strlen($lat)< 5 or strlen($lon) < 5) { break; }
-			$out .= sprintf("%01.6f",$lat).','.sprintf("%01.6f",$lon)."\n";
+			$lat = (float)($lat);
+			$lon = (float)($lon);
+			
+			#if(strlen($lat)< 5 or strlen($lon) < 5) { 
+			#  $error .= "; convert_to_lines: bad lat,long '$lat,$lon' -- skipping\n";
+			#	continue; 
+			#}
+			$lastCoord = sprintf("%01.6f",$lat).','.sprintf("%01.6f",$lon);
+			$out .= $lastCoord."\n";
 		}
 		# ensure polygon is closed V2.05
 		$tCoords = explode("\n",$out);
+		$nCoords = count($tCoords);
 		$firstCoord = $tCoords[0];
-		$lastCoord  = array_pop($tCoords);
 		
-		if($firstCoord === $lastCoord) {
+		if(strcmp($firstCoord,$lastCoord) == 0) {
 			#nothing to fix
-			return($out);
+			return(array($out,$error));
 		} else {
 			# not matched .. add first coord to end
+			$error .= "; convert_to_lines: unclosed $nCoords points polygon firstCoord='$firstCoord' lastCoord='$lastCoord' - appended first coord at end\n";
 			$out .= $firstCoord."\n";
 		}
 		
-		return($out);
+		return(array($out,$error));
 	}
+
+#---------------------------------------------------------------------------
+
+	function convert_array_to_lines($GDATA) {
+		global $doDebug;
+		# convert the array-format shapefile to GRLevel3 usage
+		# Uses process_polygon to extract the point coordinated
+		#   from each ring of data from the shapefile $Geography->getArray() format
+		
+/*
+Polygon
+	array (
+		'numrings' => 16,
+		'rings' => 
+		array (
+			0 => 
+			array (
+				'numpoints' => 8556,
+				'points' => 
+				array (
+					0 => 
+					array (
+						'x' => -67.72191619899996,
+						'y' => 45.68241500900007,
+					),
+
+Multipoint - 
+ array (
+  'numparts' => 231,
+  'parts' => 
+  array (
+    0 => 
+    array (
+      'numrings' => 1,
+      'rings' => 
+      array (
+        0 => 
+        array (
+          'numpoints' => 6,
+          'points' => 
+          array (
+            0 => 
+            array (
+              'x' => -67.93538665799997,
+              'y' => 44.40382385300006,
+            ),
+
+*/
+		$error = '';
+		$out   = '';
+		
+		if(isset($GDATA['numparts'])) {
+			# Multipolygon
+			$error .= "; multipolygon processing for ".count($GDATA['parts'])." parts\n";
+			foreach ($GDATA['parts'] as $n => $D) {
+				list($tOut,$tErr) = process_polygon($D);
+				$out .= $tOut;
+				$error .= $tErr;
+			}
+			
+		} else {
+			# Polygon
+			$error .= "; polygon processing for ".count($GDATA['rings'])." rings\n";
+			list($tOut,$tErr) = process_polygon($GDATA);
+			$out .= $tOut;
+			$error .= $tErr;
+		}
+		
+		return(array($out,$error));
+	}
+
+#---------------------------------------------------------------------------
+
+function process_polygon($D) {
+#
+# reformat coordinate data from long,lat to lat,long for GRLevel3 coordinates
+	global $doDebug;
+	$error = '';
+	$out   = '';
+/*
+/*
+Polygon 	array (
+		'numrings' => 16,
+		'rings' => 
+		array (
+			0 => 
+			array (
+				'numpoints' => 8556,
+				'points' => 
+				array (
+					0 => 
+					array (
+						'x' => -67.72191619899996,
+						'y' => 45.68241500900007,
+					),
+
+*/	
+  if($doDebug) {$error = "; process_polygon called --------\n";}
 	
+  foreach($D['rings'] as $i => $RING) {
+    foreach($RING['points'] as $j => $point) {
+			
+  			$lastCoord = sprintf("%01.6f",$point['y']).','.sprintf("%01.6f",$point['x']);
+				if($j == 0) {$firstCoord = $lastCoord; }
+  			$out .= $lastCoord."\n";
+  	}
+		if(strcmp($firstCoord,$lastCoord) !== 0) {
+			$error .= "; process_polygon ring $i not closed first='$firstCoord' vs last='$lastCoord'\n";
+		}
+		#$out .= "; end polygon first='$firstCoord' last='$lastCoord' ring=$i\n";
+	}
+  $error .= "; process_polygon returns ".count($RING['points']). " points --------\n";
+  
+  return(array($out,$error));
+}
+
 #---------------------------------------------------------------------------
 
 // ------------ distance calculation function ---------------------
