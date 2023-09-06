@@ -13,8 +13,9 @@
 # Versoon 2.04 - 02-Sep-2023 - added timezone times to popup display
 # Version 2.05 - 05-Sep-2023 - fix unclosed polygon info from shapefile
 # Version 2.06 - 05-Sep-2023 - replace $Geometry->getWKT() with $Geometry->getArray() processing
+# Version 2.07 - 06-Sep-2023 - use multiple Polygon: and Line: for each multipoint coord set
 
-$Version = "NWS_Placefile_Alerts.php - V2.06 - 05-Sep-2023";
+$Version = "NWS_Placefile_Alerts.php - V2.07 - 05-Sep-2023";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -671,7 +672,7 @@ Icon: 2, 0, "... <alert text>"
 		$cLon = $v[4];
 		$TZ   = $v[5];
 		
-		list($coords,$errors) = get_shape_coords($zone); # this does a coordinate retrieval from the shapefile
+		list($coords,$errors,$coordsArray) = get_shape_coords($zone); # this does a coordinate retrieval from the shapefile
 		$nCoords = explode("\n",$coords);
 		if($showDetails) {
 		  $coordsFrom = '\n(lines are around Zone '.$zone.')\n';
@@ -684,12 +685,18 @@ Icon: 2, 0, "... <alert text>"
 		if($showDetails) { # do Line: command
 			$tCmd .= "Color: $colors\n";
 			$popup = str_replace($timeMarker,get_popup_local_times($P,$zone),$popup_template);
-			$tCmd .= 'Line: 2, 0, "' . $popup;
+			$LineCmd = 'Line: 2, 0, "' . $popup;
+			$tCmd .= $LineCmd;
+			if(count($coordsArray) > 1) {
+				$coords = $coordsArray[0]; # multiple segments.. use first one.
+				$nCoords = explode("\n",$coords);		
+			}
 		} else { # do Polygon and Icon commands
 			$colors = str_replace(' ',',',$colors);
 			if(!empty($cLat) and !empty($cLon)) {
 				$icon = get_iconnumber($event);
 			}
+			$LineCmd = '';
 			$tCmd .= "Polygon:\n";
 		}
 
@@ -707,11 +714,34 @@ Icon: 2, 0, "... <alert text>"
 		}
 		
 		unset($nCoords);
-		if(!$showDetails) { # Polygon .. needs color info on first coordinate
+		if(!$showDetails and count($coordsArray) > 1) { # Polygon .. needs color info on first coordinate
+			foreach ($coordsArray as $kk => $coords) {
+				$tC = explode("\n",$coords);
+				$firstCoord = $tC[0];
+			  $coords = $firstCoord.",".str_replace(' ',',',$colors).",150\n".$coords;
+				$out .= "; polygon $kk has ".count($tC)." points.\n";
+				$out .= "Polygon:\n";
+				$out .= $coords;
+				$out .= "End:\n";
+			}
+			$out .= "; --- end multipolygon for area ---\n";
+		} else {
 			$coords = $firstCoord.",".str_replace(' ',',',$colors).",150\n".$coords;
+		  $out .= $prefix.str_replace("\"\n",$coordsFrom."\"\n",$tOut.$tCmd).$coords;
+      $out .= "End:\n";
 		}
-		$out .= $prefix.str_replace("\"\n",$coordsFrom."\"\n",$tOut.$tCmd).$coords;
-    $out .= "End:\n";
+		
+		if($showDetails and count($coordsArray) > 1) {
+			$out .= "; --- multipolygon for line ---\n";
+			foreach ($coordsArray as $kk => $coords) {
+				if($kk == 0) {continue;} # already emitted it above
+				$out .= "; line $kk\n";
+				$out .= str_replace("\"\n",$coordsFrom."\"\n",$LineCmd);
+				$out .= $coords;
+				$out .= "End:\n";
+			}
+			$out .= "; --- end multipolygon for line ---\n";
+		}
 		if(strlen($errors) > 0) {
 			$out .= $errors;
 		}
@@ -720,6 +750,7 @@ Icon: 2, 0, "... <alert text>"
 		  $popup = str_replace($timeMarker,get_popup_local_times($P,$zone),$popup_template);
 			$out .= "Icon: $cLat,$cLon,0,1,$icon,\"".str_replace("\"\n",$coordsFrom."\"\n",$popup);
 		}
+		$out .= "; coords have ".count($coordsArray)." polygon rings \n";
 		$out .= "; end end zone $zone\n\n";
 		$coords = '';
 	
@@ -809,9 +840,9 @@ function get_shape_coords ($zone) {
         foreach ($fields as $i => $name) {
 					$vals[$name] = $Geometry->getData($name);
 				}
-				list($GRdata,$errors) = convert_array_to_lines($GDATA);
+				list($GRdata,$errors,$outArray) = convert_array_to_lines($GDATA);
 				
-				return(array($GRdata,$errors));
+				return(array($GRdata,$errors,$outArray));
 				
 		} catch (ShapefileException $e) {
 				// Handle some specific errors types or fallback to default
@@ -941,12 +972,13 @@ Multipoint -
 */
 		$error = '';
 		$out   = '';
-		
+		$outArray = array();
 		if(isset($GDATA['numparts'])) {
 			# Multipolygon
 			$error .= "; multipolygon processing for ".count($GDATA['parts'])." parts\n";
 			foreach ($GDATA['parts'] as $n => $D) {
 				list($tOut,$tErr) = process_polygon($D);
+				$outArray[] = $tOut;
 				$out .= $tOut;
 				$error .= $tErr;
 			}
@@ -955,11 +987,12 @@ Multipoint -
 			# Polygon
 			$error .= "; polygon processing for ".count($GDATA['rings'])." rings\n";
 			list($tOut,$tErr) = process_polygon($GDATA);
+			$outArray[] = $tOut;
 			$out .= $tOut;
 			$error .= $tErr;
 		}
 		
-		return(array($out,$error));
+		return(array($out,$error,$outArray));
 	}
 
 #---------------------------------------------------------------------------
@@ -970,6 +1003,7 @@ function process_polygon($D) {
 	global $doDebug;
 	$error = '';
 	$out   = '';
+	
 /*
 /*
 Polygon 	array (
