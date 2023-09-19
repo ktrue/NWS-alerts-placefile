@@ -14,8 +14,9 @@
 # Version 2.05 - 05-Sep-2023 - fix unclosed polygon info from shapefile
 # Version 2.06 - 05-Sep-2023 - replace $Geometry->getWKT() with $Geometry->getArray() processing
 # Version 2.07 - 06-Sep-2023 - use multiple Polygon: and Line: for each multipoint coord set
+# Version 2.08 - 19-Sep-2023 - sort alerts by severity with most severe drawn on top (last)
 
-$Version = "NWS_Placefile_Alerts.php - V2.07 - 05-Sep-2023";
+$Version = "NWS_Placefile_Alerts.php - V2.08 - 19-Sep-2023";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -245,9 +246,38 @@ function JSONread($url) {
   }
   
   $out .= "; ".count($JSON['features'])." alerts found\n\n";
-  
-  foreach ($JSON['features'] as $i => $A) { # do the heavy lifting.. decode each alert
-	  if($doDebug) {$out .= "\n; JSONread: i=$i calling decodeAlert\n";}
+	
+	$out .= "\n; Sorting JSON by severity\n";
+	
+	$Jseverity = array(); # keyed index by severity
+	
+	foreach ($JSON['features'] as $i => $A) { # scan for severity
+	  $severity = $A['properties']['severity'];
+		if(isset($Jseverity[$severity])) {
+			$Jseverity[$severity] .= "$i|";
+		} else {
+			$Jseverity[$severity] = "$i|";
+		}
+	}
+	$JSORTED = array();
+	
+	foreach (array('Unknown','Minor','Moderate','Severe','Extreme') as $k => $key) {
+		if(!isset($Jseverity[$key])) { 
+		  $out .= ";  severity='$key' has no alerts\n";
+		  continue;}
+		$vals = explode('|',$Jseverity[$key]);
+		$out .= ";  severity='$key' has ".count($vals)." alerts\n";
+		foreach($vals as $j => $idx) {
+			if($idx >= 0) {$JSORTED[] = $idx;}
+		}
+	}
+	$out .= "; Sorting complete.\n\n";
+	
+  if($doDebug) { file_put_contents('sorted-json.txt',var_export($JSORTED,true)); }
+	
+  foreach ($JSORTED as $i => $idx) { # do the heavy lifting.. decode each alert in severity sort order
+	  $A = $JSON['features'][$idx];
+	  if($doDebug) {$out .= "\n; JSONread: idx=$idx calling decodeAlert\n";}
     $out .= decodeAlert($A);
 		if($doDebug) {$out .= ";--------------\n; JSONread: decodeAlert returns\n";}
   }
