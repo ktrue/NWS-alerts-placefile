@@ -15,8 +15,9 @@
 # Version 2.06 - 05-Sep-2023 - replace $Geometry->getWKT() with $Geometry->getArray() processing
 # Version 2.07 - 06-Sep-2023 - use multiple Polygon: and Line: for each multipoint coord set
 # Version 2.08 - 19-Sep-2023 - sort alerts by severity with most severe drawn on top (last)
+# Version 2.09 - 20-Sep-2023 - added additional sort to have better displays for alerts
 
-$Version = "NWS_Placefile_Alerts.php - V2.08 - 19-Sep-2023";
+$Version = "NWS_Placefile_Alerts.php - V2.09 - 20-Sep-2023";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -253,18 +254,18 @@ function JSONread($url) {
 	
 	foreach ($JSON['features'] as $i => $A) { # scan for severity
 	  $severity = $A['properties']['severity'];
-		if(isset($Jseverity[$severity])) {
-			$Jseverity[$severity] .= "$i|";
+		$event    = $A['properties']['event'];
+		$level    = get_priority($event);
+		if(isset($Jseverity["$level|$severity"])) {
+			$Jseverity["$level|$severity"] .= "$i|";
 		} else {
-			$Jseverity[$severity] = "$i|";
+			$Jseverity["$level|$severity"] = "$i|";
 		}
 	}
 	$JSORTED = array();
+	ksort($Jseverity);
 	
-	foreach (array('Unknown','Minor','Moderate','Severe','Extreme') as $k => $key) {
-		if(!isset($Jseverity[$key])) { 
-		  $out .= ";  severity='$key' has no alerts\n";
-		  continue;}
+	foreach ($Jseverity as $key => $idxlist) {
 		$vals = explode('|',$Jseverity[$key]);
 		$out .= ";  severity='$key' has ".count($vals)." alerts\n";
 		foreach($vals as $j => $idx) {
@@ -1306,5 +1307,158 @@ function get_iconnumber($event) {
 	}
 	return($icon);
 } # end get_iconnumber
+
+#---------------------------------------------------------------------------
+
+
+function get_priority($event) {
+	#
+	# return relative priority based on message title for sorting most-severe last
+	#
+	static $Plist = array (
+  '911 Telephone Outage' => 'Level-4',
+  'Administrative Message' => 'Level-3',
+  'Air Quality Alert' => 'Level-4',
+  'Air Stagnation Advisory' => 'Level-1',
+  'Arroyo And Small Stream Flood Advisory' => 'Level-1',
+  'Ashfall Advisory' => 'Level-1',
+  'Avalanche Warning' => 'Level-4',
+  'Avalanche Watch' => 'Level-3',
+  'Blizzard Warning' => 'Level-4',
+  'Blizzard Watch' => 'Level-3',
+  'Blowing Dust Advisory' => 'Level-1',
+  'Blowing Dust Warning' => 'Level-4',
+  'Brisk Wind Advisory' => 'Level-1',
+  'Child Abduction Emergency' => 'Level-4',
+  'Civil Danger Warning' => 'Level-4',
+  'Civil Emergency Message' => 'Level-3',
+  'Coastal Flood Advisory' => 'Level-1',
+  'Coastal Flood Statement' => 'Level-2',
+  'Coastal Flood Warning' => 'Level-4',
+  'Coastal Flood Watch' => 'Level-3',
+  'Dense Fog Advisory' => 'Level-1',
+  'Dense Smoke Advisory' => 'Level-1',
+  'Dust Advisory' => 'Level-1',
+  'Dust Storm Warning' => 'Level-4',
+  'Earthquake Warning' => 'Level-4',
+  'Evacuation Immediate' => 'Level-4',
+  'Excessive Heat Warning' => 'Level-4',
+  'Excessive Heat Watch' => 'Level-3',
+  'Extreme Cold Warning' => 'Level-4',
+  'Extreme Cold Watch' => 'Level-3',
+  'Extreme Fire Danger' => 'Level-4',
+  'Extreme Wind Warning' => 'Level-4',
+  'Fire Warning' => 'Level-4',
+  'Fire Weather Watch' => 'Level-3',
+  'Flash Flood Statement' => 'Level-2',
+  'Flash Flood Warning' => 'Level-4',
+  'Flash Flood Watch' => 'Level-3',
+  'Flood Advisory' => 'Level-1',
+  'Flood Statement' => 'Level-2',
+  'Flood Warning' => 'Level-4',
+  'Flood Watch' => 'Level-3',
+  'Freeze Warning' => 'Level-4',
+  'Freeze Watch' => 'Level-3',
+  'Freezing Drizzle Advisory' => 'Level-1',
+  'Freezing Fog Advisory' => 'Level-1',
+  'Freezing Rain Advisory' => 'Level-1',
+  'Freezing Spray Advisory' => 'Level-1',
+  'Frost Advisory' => 'Level-1',
+  'Gale Warning' => 'Level-4',
+  'Gale Watch' => 'Level-3',
+  'Hard Freeze Warning' => 'Level-4',
+  'Hard Freeze Watch' => 'Level-3',
+  'Hazardous Materials Warning' => 'Level-4',
+  'Hazardous Seas Warning' => 'Level-4',
+  'Hazardous Seas Watch' => 'Level-3',
+  'Hazardous Weather Outlook' => 'Level-1',
+  'Heat Advisory' => 'Level-1',
+  'Heavy Freezing Spray Warning' => 'Level-4',
+  'Heavy Freezing Spray Watch' => 'Level-3',
+  'Heavy Snow Warning' => 'Level-4',
+  'High Surf Advisory' => 'Level-1',
+  'High Surf Warning' => 'Level-4',
+  'High Wind Warning' => 'Level-4',
+  'High Wind Watch' => 'Level-3',
+  'Hurricane Force Wind Warning' => 'Level-4',
+  'Hurricane Force Wind Watch' => 'Level-3',
+  'Hurricane Local Statement' => 'Level-2',
+  'Hurricane Statement' => 'Level-2',
+  'Hurricane Warning' => 'Level-4',
+  'Hurricane Watch' => 'Level-3',
+  'Hurricane Wind Warning' => 'Level-4',
+  'Hurricane Wind Watch' => 'Level-3',
+  'Hydrologic Advisory' => 'Level-1',
+  'Hydrologic Outlook' => 'Level-1',
+  'Ice Storm Warning' => 'Level-4',
+  'Lake Effect Snow Advisory' => 'Level-1',
+  'Lake Effect Snow Warning' => 'Level-4',
+  'Lake Effect Snow Watch' => 'Level-3',
+  'Lake Effect Snow and Blowing Snow Advisory' => 'Level-1',
+  'Lake Wind Advisory' => 'Level-1',
+  'Lakeshore Flood Advisory' => 'Level-1',
+  'Lakeshore Flood Statement' => 'Level-2',
+  'Lakeshore Flood Warning' => 'Level-4',
+  'Lakeshore Flood Watch' => 'Level-3',
+  'Law Enforcement Warning' => 'Level-4',
+  'Local Area Emergency' => 'Level-4',
+  'Low Water Advisory' => 'Level-1',
+  'Marine Weather Statement' => 'Level-2',
+  'Nuclear Power Plant Warning' => 'Level-4',
+  'Radiological Hazard Warning' => 'Level-4',
+  'Red Flag Warning' => 'Level-4',
+  'Rip Current Statement' => 'Level-2',
+  'Severe Thunderstorm Warning' => 'Level-4',
+  'Severe Thunderstorm Watch' => 'Level-3',
+  'Severe Weather Statement' => 'Level-2',
+  'Shelter In Place Warning' => 'Level-4',
+  'Short Term Forecast' => 'Level-1',
+  'Sleet Advisory' => 'Level-1',
+  'Sleet Warning' => 'Level-4',
+  'Small Craft Advisory' => 'Level-1',
+  'Small Craft Advisory For Hazardous Seas' => 'Level-1',
+  'Small Craft Advisory For Rough Bar' => 'Level-1',
+  'Small Craft Advisory For Winds' => 'Level-1',
+  'Small Stream Flood Advisory' => 'Level-1',
+  'Snow And Blowing Snow Advisory' => 'Level-1',
+  'Snow Squall Warning' => 'Level-4',
+  'Special Marine Warning' => 'Level-4',
+  'Special Weather Statement' => 'Level-2',
+  'Storm Surge Warning' => 'Level-4',
+  'Storm Surge Watch' => 'Level-3',
+  'Storm Warning' => 'Level-4',
+  'Storm Watch' => 'Level-3',
+  'Test' => 'Level-0',
+  'Tornado Warning' => 'Level-4',
+  'Tornado Watch' => 'Level-3',
+  'Tropical Depression Local Statement' => 'Level-2',
+  'Tropical Storm Local Statement' => 'Level-2',
+  'Tropical Storm Warning' => 'Level-4',
+  'Tropical Storm Watch' => 'Level-3',
+  'Tropical Storm Wind Warning' => 'Level-4',
+  'Tropical Storm Wind Watch' => 'Level-3',
+  'Tsunami Advisory' => 'Level-1',
+  'Tsunami Warning' => 'Level-4',
+  'Tsunami Watch' => 'Level-3',
+  'Typhoon Local Statement' => 'Level-2',
+  'Typhoon Statement' => 'Level-2',
+  'Typhoon Warning' => 'Level-4',
+  'Typhoon Watch' => 'Level-3',
+  'Urban And Small Stream Flood Advisory' => 'Level-1',
+  'Volcano Warning' => 'Level-4',
+  'Wind Advisory' => 'Level-1',
+  'Wind Chill Advisory' => 'Level-1',
+  'Wind Chill Warning' => 'Level-4',
+  'Wind Chill Watch' => 'Level-3',
+  'Winter Storm Warning' => 'Level-4',
+  'Winter Storm Watch' => 'Level-3',
+  'Winter Weather Advisory' => 'Level-1',
+  );
+
+  if(isset($Plist[$event])) {
+		return ($Plist[$event]);
+	}
+	return ('Level-0');
+}
 
 # end of program
