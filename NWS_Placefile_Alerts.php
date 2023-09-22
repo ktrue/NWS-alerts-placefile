@@ -16,8 +16,9 @@
 # Version 2.07 - 06-Sep-2023 - use multiple Polygon: and Line: for each multipoint coord set
 # Version 2.08 - 19-Sep-2023 - sort alerts by severity with most severe drawn on top (last)
 # Version 2.09 - 20-Sep-2023 - added additional sort to have better displays for alerts
+# Version 2.10 - 22-Sep-2023 - added plotting by ring data to improve area displays
 
-$Version = "NWS_Placefile_Alerts.php - V2.09 - 20-Sep-2023";
+$Version = "NWS_Placefile_Alerts.php - V2.10 - 22-Sep-2023";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -980,24 +981,29 @@ Polygon
 					),
 
 Multipoint - 
- array (
-  'numparts' => 231,
+array (
+  'numparts' => 13,
   'parts' => 
   array (
     0 => 
     array (
-      'numrings' => 1,
+      'numrings' => 111,
       'rings' => 
       array (
         0 => 
         array (
-          'numpoints' => 6,
+          'numpoints' => 7382,
           'points' => 
           array (
             0 => 
             array (
-              'x' => -67.93538665799997,
-              'y' => 44.40382385300006,
+              'x' => -75.52278900099998,
+              'y' => 35.761253357000044,
+            ),
+            1 => 
+            array (
+              'x' => -75.52267939399997,
+              'y' => 35.76218467600006,
             ),
 
 */
@@ -1008,17 +1014,23 @@ Multipoint -
 			# Multipolygon
 			$error .= "; multipolygon processing for ".count($GDATA['parts'])." parts\n";
 			foreach ($GDATA['parts'] as $n => $D) {
-				list($tOut,$tErr) = process_polygon($D);
-				$outArray[] = $tOut;
-				$out .= $tOut;
-				$error .= $tErr;
+					list($tOut,$tErr,$tRings) = process_polygon($D);
+				#	$outArray[] = $tOut;
+				  foreach ($tRings as $i => $val) {
+						$outArray[] = $val;
+					}
+					$out .= $tOut;
+					$error .= $tErr;
 			}
 			
 		} else {
 			# Polygon
 			$error .= "; polygon processing for ".count($GDATA['rings'])." rings\n";
-			list($tOut,$tErr) = process_polygon($GDATA);
-			$outArray[] = $tOut;
+			list($tOut,$tErr,$tRings) = process_polygon($GDATA);
+		#	$outArray[] = $tOut;
+			foreach ($tRings as $i => $val) {
+				$outArray[] = $val;
+			}
 			$out .= $tOut;
 			$error .= $tErr;
 		}
@@ -1054,22 +1066,28 @@ Polygon 	array (
 
 */	
   if($doDebug) {$error = "; process_polygon called --------\n";}
-	
+	$totPoints = 0;
+	$outRings = array();
   foreach($D['rings'] as $i => $RING) {
+		$error .= "; process_polygon ring $i with ".count($RING['points'])." points\n";
+		$outR = '';
     foreach($RING['points'] as $j => $point) {
 			
   			$lastCoord = sprintf("%01.6f",$point['y']).','.sprintf("%01.6f",$point['x']);
 				if($j == 0) {$firstCoord = $lastCoord; }
   			$out .= $lastCoord."\n";
+				$outR .= $lastCoord."\n";
+				$totPoints++;
   	}
+		$outRings[] = $outR;
 		if(strcmp($firstCoord,$lastCoord) !== 0) {
 			$error .= "; process_polygon ring $i not closed first='$firstCoord' vs last='$lastCoord'\n";
 		}
 		#$out .= "; end polygon first='$firstCoord' last='$lastCoord' ring=$i\n";
 	}
-  $error .= "; process_polygon returns ".count($RING['points']). " points --------\n";
+  $error .= "; process_polygon returns ".$totPoints. " points in ".$D['numrings']." rings--------\n";
   
-  return(array($out,$error));
+  return(array($out,$error,$outRings));
 }
 
 #---------------------------------------------------------------------------
