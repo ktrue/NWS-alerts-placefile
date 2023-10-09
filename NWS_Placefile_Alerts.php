@@ -17,8 +17,9 @@
 # Version 2.08 - 19-Sep-2023 - sort alerts by severity with most severe drawn on top (last)
 # Version 2.09 - 20-Sep-2023 - added additional sort to have better displays for alerts
 # Version 2.10 - 22-Sep-2023 - added plotting by ring data to improve area displays
+# Version 2.11 - 09-Oct-2023 - added zone info to placefile output for debugging
 
-$Version = "NWS_Placefile_Alerts.php - V2.10 - 22-Sep-2023";
+$Version = "NWS_Placefile_Alerts.php - V2.11 - 09-Oct-2023";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -486,8 +487,12 @@ Icon: 2, 0, "... <alert text>"
   $event = $P["event"];
   $headline = str_replace("\n",'\n',$P["headline"]);       # convert embedded newline into \n chars
   $headline = str_replace('"','\"',$headline);             # swap embedded " with \"
-  $description = str_replace("\n",'\n',$P["description"]); # convert embedded newline into \n chars
-  $description = str_replace('"','\"',$description);      # swap embedded " with \"
+	if(!empty($P['description'])) {
+    $description = str_replace("\n",'\n',$P["description"]); # convert embedded newline into \n chars
+    $description = str_replace('"','\"',$description);      # swap embedded " with \"
+	} else {
+		$description = '';
+	}
 
   $event_onset = $P["onset"];
   $onset = date($timeFormat,strtotime($event_onset));
@@ -558,6 +563,9 @@ Icon: 2, 0, "... <alert text>"
 	       GML_distance((float)$latitude, (float)$longitude,(float)$v[3], (float)$v[4]);
 			if($miles > $maxDistance) {
 			  $out .= "; $headline \n";
+				$out .= "; severity=$severity\n";
+				$tZones = implode(', ',$P['geocode']['UGC']);
+				$out .= "; zone(s) '$tZones'\n";
         $out .= "; active: $onset to $expires\n";
 		    $out .= "; excluded by distance $miles > $maxDistance max.\n\n";
 		    if($doDebug) { $out .= "; decodeAlert: returned-#2\n"; }
@@ -570,6 +578,9 @@ Icon: 2, 0, "... <alert text>"
 	if(in_array($event,$excludeAlerts)) {
 		$out .= "; $headline \n";
     $out .= "; active: $onset to $expires\n";
+		$out .= "; severity=$severity\n";
+		$tZones = implode(', ',$P['geocode']['UGC']);
+		$out .= "; zone(s) '$tZones'\n";
 		$out .= "; excluded in \$excludeAlerts\n\n";
 		if($doDebug) { $out .= "; decodeAlert: returned-#3\n"; }
 		return($out); # yes, excluded by event
@@ -586,7 +597,10 @@ Icon: 2, 0, "... <alert text>"
 				$out .= "; ".str_pad("$key:",10)." n/a\n";
 			}
 		}
-    $out .= "; excluded as expired. Now=".gmdate($timeFormat)."\n";
+		$out .= "; severity=$severity\n";
+		$tZones = implode(', ',$P['geocode']['UGC']);
+		$out .= "; zone(s) '$tZones'\n";
+    $out .= "; excluded as expired. Now=".gmdate($timeFormat)."\n\n";
 		if($doDebug) { $out .= "; decodeAlert: returned-#4\n"; }
 		return($out); # avoid the expired alert
 	}
@@ -642,6 +656,9 @@ Icon: 2, 0, "... <alert text>"
   if(strlen($coords) < 10) { # no main coords.. get the Zone coords instead
 	  if($doDebug) { $out .= "; decodeAlert: begin UGS processing\n"; }
 		$out .= "; $event .. no coords, generating zone coords UGC='$UGC'\n"; 
+		$out .= "; severity=$severity\n";
+		$tZones = implode(', ',$P['geocode']['UGC']);
+		$out .= "; zone(s) '$tZones'\n";
 		foreach ($UGC_array as $k => $zone) {
 			if(isset($zoneLookup[$zone])) {
 				# would lookup
