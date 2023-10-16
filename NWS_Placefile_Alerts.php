@@ -18,8 +18,9 @@
 # Version 2.09 - 20-Sep-2023 - added additional sort to have better displays for alerts
 # Version 2.10 - 22-Sep-2023 - added plotting by ring data to improve area displays
 # Version 2.11 - 09-Oct-2023 - added zone info to placefile output for debugging
+# Version 2.12 - 16-Oct-2023 - change to alert query URLs
 
-$Version = "NWS_Placefile_Alerts.php - V2.11 - 09-Oct-2023";
+$Version = "NWS_Placefile_Alerts.php - V2.12 - 16-Oct-2023";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -27,7 +28,8 @@ $excludeAlerts = array(
 "Severe Thunderstorm Warning",
 "Severe Weather Statement",
 "Tornado Warning",
-"Flash Flood Warning"
+"Flash Flood Warning",
+"Special Weather Statement"
 );
 $excludeAlerts = array(); /* debug */
 $TZ = 'UTC';                            # default timezone for display
@@ -35,7 +37,7 @@ $timeFormat = "d-M-Y g:ia T";           # display format for times
 $maxDistance = 350;                     # generate entries only within this distance
 $cacheFilename = 'response_land.json';  # store json here
 $cacheTimeMax  = 480;                   # number of seconds cache is 'fresh'
-$alertsURL = 'https://api.weather.gov/alerts/active?status=actual&message_type=alert&region_type=land&limit=500';
+$alertsURL = 'https://api.weather.gov/alerts/active?status=actual&region_type=land';
 $showDetails = true;                   # =false, show areas only; =true, show lines with popups
 $showMarine = true; # =true; for marine alerts, =false for land alerts
 #
@@ -77,7 +79,7 @@ if(isset($doShowMarine))      {$showMarine  = $doShowMarine;}
 $titleExtra = ($showDetails)?'Details':'Areas';
 if($showMarine) {
 	$titleExtra = 'Marine '.$titleExtra;
-	$alertsURL = 'https://api.weather.gov/alerts/active?status=actual&message_type=alert&region_type=marine&limit=500';
+	$alertsURL = 'https://api.weather.gov/alerts/active?status=actual&region_type=marine';
 	$cacheFilename = str_replace('land','marine',$cacheFilename);
 }
 //*
