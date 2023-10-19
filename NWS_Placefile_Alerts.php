@@ -19,8 +19,9 @@
 # Version 2.10 - 22-Sep-2023 - added plotting by ring data to improve area displays
 # Version 2.11 - 09-Oct-2023 - added zone info to placefile output for debugging
 # Version 2.12 - 16-Oct-2023 - change to alert query URLs
+# Version 2.13 - 19-Oct-2023 - add Ramer-Douglas-Peucker functions to simplify coordinates where needed
 
-$Version = "NWS_Placefile_Alerts.php - V2.12 - 16-Oct-2023";
+$Version = "NWS_Placefile_Alerts.php - V2.13 - 19-Oct-2023";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -40,6 +41,9 @@ $cacheTimeMax  = 480;                   # number of seconds cache is 'fresh'
 $alertsURL = 'https://api.weather.gov/alerts/active?status=actual&region_type=land';
 $showDetails = true;                   # =false, show areas only; =true, show lines with popups
 $showMarine = true; # =true; for marine alerts, =false for land alerts
+#
+$pruneThreshold = 0.0005;   # lat/long threshold for pruning points from polygons
+$prunePoints    = 1000;         # prune coords with more than this number of points
 #
 $latitude = 37.155;
 $longitude = -121.898;
@@ -73,6 +77,7 @@ $NWStimeZones = array (
 
 # -----------------------------------------------
 header("Content-Type: text/plain");
+global $pruneThreshold,$prunePoints;
 
 if(isset($doShowDetails)) {$showDetails = $doShowDetails;}
 if(isset($doShowMarine))      {$showMarine  = $doShowMarine;}
@@ -479,7 +484,7 @@ Icon: 2, 0, "... <alert text>"
 
   $isoDate = "Y-m-d\TH:i:s";
   
-  $out = ''; # used for accumulation of retrun output
+  $out = ''; # used for accumulation of return output
 	
 	if($doDebug) {$out .= "\n;--------------\n; decodeAlert entered\n"; }
 
@@ -935,47 +940,6 @@ function get_shape_coords ($zone) {
 
 #---------------------------------------------------------------------------
 
-	function convert_to_lines_WKT($GDATA) {
-		$error = '';
-		$tstr = str_replace('POLYGON','',$GDATA);
-		$tstr = str_replace('MULTI','',$tstr);
-		$tstr = str_replace(array('(',')'),array('',''),$tstr);
-		$vals = explode(', ',$tstr.', ');
-		$out = "";
-		if(!isset($vals[0]) ) { return(array("","; data not found\n")); }
-		foreach ($vals as $i => $v) {
-			if(empty($v)) { continue;}
-			list($lon,$lat) = explode(' ',$v.' ');
-			
-			$lat = (float)($lat);
-			$lon = (float)($lon);
-			
-			#if(strlen($lat)< 5 or strlen($lon) < 5) { 
-			#  $error .= "; convert_to_lines: bad lat,long '$lat,$lon' -- skipping\n";
-			#	continue; 
-			#}
-			$lastCoord = sprintf("%01.6f",$lat).','.sprintf("%01.6f",$lon);
-			$out .= $lastCoord."\n";
-		}
-		# ensure polygon is closed V2.05
-		$tCoords = explode("\n",$out);
-		$nCoords = count($tCoords);
-		$firstCoord = $tCoords[0];
-		
-		if(strcmp($firstCoord,$lastCoord) == 0) {
-			#nothing to fix
-			return(array($out,$error));
-		} else {
-			# not matched .. add first coord to end
-			$error .= "; convert_to_lines: unclosed $nCoords points polygon firstCoord='$firstCoord' lastCoord='$lastCoord' - appended first coord at end\n";
-			$out .= $firstCoord."\n";
-		}
-		
-		return(array($out,$error));
-	}
-
-#---------------------------------------------------------------------------
-
 	function convert_array_to_lines($GDATA) {
 		global $doDebug;
 		# convert the array-format shapefile to GRLevel3 usage
@@ -1062,7 +1026,7 @@ array (
 function process_polygon($D) {
 #
 # reformat coordinate data from long,lat to lat,long for GRLevel3 coordinates
-	global $doDebug;
+	global $doDebug,$pruneThreshold,$prunePoints;
 	$error = '';
 	$out   = '';
 	
@@ -1090,7 +1054,12 @@ Polygon 	array (
   foreach($D['rings'] as $i => $RING) {
 		$error .= "; process_polygon ring $i with ".count($RING['points'])." points\n";
 		$outR = '';
-    foreach($RING['points'] as $j => $point) {
+		$tRING = $RING['points'];
+		if(count($tRING) > $prunePoints) {
+			$tRING = prune_polygon($tRING);
+			$error .= "; prune_polygon returns ".count($tRING)." points\n";
+		}
+    foreach($tRING as $j => $point) {
 			
   			$lastCoord = sprintf("%01.6f",$point['y']).','.sprintf("%01.6f",$point['x']);
 				if($j == 0) {$firstCoord = $lastCoord; }
@@ -1107,6 +1076,16 @@ Polygon 	array (
   $error .= "; process_polygon returns ".$totPoints. " points in ".$D['numrings']." rings--------\n";
   
   return(array($out,$error,$outRings));
+}
+
+#---------------------------------------------------------------------------
+
+function prune_polygon($R) {
+	global $pruneThreshold;
+	
+	$newRING = simplify_RDP($R,$pruneThreshold);
+	
+	return($newRING);
 }
 
 #---------------------------------------------------------------------------
@@ -1497,5 +1476,95 @@ function get_priority($event) {
 	}
 	return ('Level-0');
 }
+
+#---------------------------------------------------------------------------
+
+/*
+ * sourced from https://github.com/gregallensworth/PHP-Geometry
+ * functions programmed by Greg Allensworth 
+ *
+ * A Ramer-Douglas-Peucker implementation to simplify lines in PHP
+ * Unlike the one by Pol Dell'Aiera this one is built to operate on an array of arrays and in a non-OO manner,
+ * making it suitable for smaller apps which must consume input from ArcGIS or Leaflet, without the luxury of GeoPHP/GEOS
+ * 
+ * Usage:
+ * $verts     = array( array(0,1), array(1,2), array(2,1), array(3,5), array(4,6), array(5,5) );
+ * $tolerance = 1.0;
+ * $newverts  = simplify_RDP($verts,$tolerance);
+ *
+ * Bonus: It does not trim off extra ordinates from each vertex, so it's agnostic as to whether your data are 2D or 3D
+ * and will return the kept vertices unchanged.
+ * 
+ * This operates on a single set of vertices, aka a single linestring.
+ * If used on a multilinestring you will want to run it on each component linestring separately.
+ * 
+ * No license, use as you will, credits appreciated but not required, etc.
+ * Greg Allensworth, GreenInfo Network   <gregor@greeninfo.org>
+ *
+ * My invaluable references:
+ * https://github.com/Polzme/geoPHP/commit/56c9072f69ed1cec2fdd36da76fa595792b4aa24
+ * http://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
+ * http://math.ucsd.edu/~wgarner/math4c/derivations/distance/distptline.htm
+ *
+ */
+
+function simplify_RDP($vertices, $tolerance) {
+    // if this is a multilinestring, then we call ourselves one each segment individually, collect the list, and return that list of simplified lists
+    if (isset($vertices[0][0]) and is_array($vertices[0][0])) {
+        $multi = array();
+        foreach ($vertices as $subvertices) $multi[] = simplify_RDP($subvertices,$tolerance);
+        return $multi;
+    }
+
+    $tolerance2 = $tolerance * $tolerance;
+
+    // okay, so this is a single linestring and we simplify it individually
+    return _segment_RDP($vertices,$tolerance2);
+}
+
+function _segment_RDP($segment, $tolerance_squared) {
+    if (sizeof($segment) <= 2) return $segment; // segment is too small to simplify, hand it back as-is
+
+    // find the maximum distance (squared) between this line $segment and each vertex
+    // distance is solved as described at UCSD page linked above
+    // cheat: vertical lines (directly north-south) have no slope so we fudge it with a very tiny nudge to one vertex; can't imagine any units where this will matter
+    $startx = (float) $segment[0]['x'];
+    $starty = (float) $segment[0]['y'];
+    $endx   = (float) $segment[ sizeof($segment)-1 ]['x'];
+    $endy   = (float) $segment[ sizeof($segment)-1 ]['y'];
+    if ($endx == $startx) $startx += 0.00001;
+    $m = ($endy - $starty) / ($endx - $startx); // slope, as in y = mx + b
+    $b = $starty - ($m * $startx);              // y-intercept, as in y = mx + b
+
+    $max_distance_squared = 0;
+    $max_distance_index   = null;
+    for ($i=1, $l=sizeof($segment); $i<=$l-2; $i++) {
+        $x1 = $segment[$i]['x'];
+        $y1 = $segment[$i]['y'];
+
+        $closestx = ( ($m*$y1) + ($x1) - ($m*$b) ) / ( ($m*$m)+1);
+        $closesty = ($m * $closestx) + $b;
+        $distsqr  = ($closestx-$x1)*($closestx-$x1) + ($closesty-$y1)*($closesty-$y1);
+
+        if ($distsqr > $max_distance_squared) {
+            $max_distance_squared = $distsqr;
+            $max_distance_index   = $i;
+        }
+    }
+
+    // cleanup and disposition
+    // if the max distance is below tolerance, we can bail, giving a straight line between the start vertex and end vertex   (all points are so close to the straight line)
+    if ($max_distance_squared <= $tolerance_squared) {
+        return array($segment[0], $segment[ sizeof($segment)-1 ]);
+    }
+    // but if we got here then a vertex falls outside the tolerance
+    // split the line segment into two smaller segments at that "maximum error vertex" and simplify those
+    $slice1 = array_slice($segment, 0, $max_distance_index);
+    $slice2 = array_slice($segment, $max_distance_index);
+    $segs1 = _segment_RDP($slice1, $tolerance_squared);
+    $segs2 = _segment_RDP($slice2, $tolerance_squared);
+    return array_merge($segs1,$segs2);
+}
+
 
 # end of program
