@@ -21,8 +21,9 @@
 # Version 2.12 - 16-Oct-2023 - change to alert query URLs
 # Version 2.13 - 19-Oct-2023 - add Ramer-Douglas-Peucker functions to simplify coordinates where needed
 # Version 2.14 - 20-Oct-2023 - remove > 9999 limit with prune_polygon active
+# Version 2.15 - 20-Oct-2023 - remove > 9999 limit with multi-pass simplify_RDP calls to prune points
 
-$Version = "NWS_Placefile_Alerts.php - V2.14 - 20-Oct-2023 - saratoga-weather.org";
+$Version = "NWS_Placefile_Alerts.php - V2.15 - 20-Oct-2023 - saratoga-weather.org";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -758,7 +759,7 @@ Icon: 2, 0, "... <alert text>"
 		}
 
 		$firstCoord = $nCoords[0];
-		if(count($nCoords) > 12000) { # disabled after adding prune_polygon function
+		if(count($nCoords) > 99999) { # disabled after adding prune_polygon function
 			$out .= $prefix."; too many coordinates to plot on GRLevel3 for ".$zone." (".count($nCoords).") .. skipping.\n\n";
 			unset($nCoords);
 			$coords = '';
@@ -1057,11 +1058,15 @@ Polygon 	array (
 		$outR = '';
 		$tRING = $RING['points'];
 		if(count($tRING) > $prunePoints) {
-			$tRING = prune_polygon($tRING);
-			$error .= "; prune_polygon returns ".count($tRING)." points\n";
+			$tRING = simplify_RDP($tRING,$pruneThreshold);
+			$error .= "; simplify_RDP returns ".count($tRING)." points with threshold=$pruneThreshold\n";
+			if(count($tRING) > 9999) { 
+				$tRING = simplify_RDP($tRING,$pruneThreshold*10.0);
+				$error .= "; simplify_RDP 2nd pass returns ".count($tRING)." points with threshold=".$pruneThreshold*10.0."\n";
+			}
 			if(count($tRING) > 9999) {
-				$tRING = prune_polygon($tRING);
-				$error .= "; prune_polygon 2nd pass returns ".count($tRING)." points\n";
+				$tRING = simplify_RDP($tRING,$pruneThreshold*20.0);
+				$error .= "; simplify_RDP 3rd pass returns ".count($tRING)." points with threshold=".$pruneThreshold*20.0."\n";
 			}
 		}
     foreach($tRING as $j => $point) {
@@ -1081,16 +1086,6 @@ Polygon 	array (
   $error .= "; process_polygon returns ".$totPoints. " points in ".$D['numrings']." rings--------\n";
   
   return(array($out,$error,$outRings));
-}
-
-#---------------------------------------------------------------------------
-
-function prune_polygon($R) {
-	global $pruneThreshold;
-	
-	$newRING = simplify_RDP($R,$pruneThreshold);
-	
-	return($newRING);
 }
 
 #---------------------------------------------------------------------------
