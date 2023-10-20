@@ -20,8 +20,9 @@
 # Version 2.11 - 09-Oct-2023 - added zone info to placefile output for debugging
 # Version 2.12 - 16-Oct-2023 - change to alert query URLs
 # Version 2.13 - 19-Oct-2023 - add Ramer-Douglas-Peucker functions to simplify coordinates where needed
+# Version 2.14 - 20-Oct-2023 - remove > 9999 limit with prune_polygon active
 
-$Version = "NWS_Placefile_Alerts.php - V2.13 - 19-Oct-2023";
+$Version = "NWS_Placefile_Alerts.php - V2.14 - 20-Oct-2023 - saratoga-weather.org";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -757,7 +758,7 @@ Icon: 2, 0, "... <alert text>"
 		}
 
 		$firstCoord = $nCoords[0];
-		if(count($nCoords) > 9999) {
+		if(count($nCoords) > 99999) { # disabled after adding prune_polygon function
 			$out .= $prefix."; too many coordinates to plot on GRLevel3 for ".$zone." (".count($nCoords).") .. skipping.\n\n";
 			unset($nCoords);
 			$coords = '';
@@ -1058,6 +1059,10 @@ Polygon 	array (
 		if(count($tRING) > $prunePoints) {
 			$tRING = prune_polygon($tRING);
 			$error .= "; prune_polygon returns ".count($tRING)." points\n";
+			if(count($tRING) > 9999) {
+				$tRING = prune_polygon($tRING);
+				$error .= "; prune_polygon 2nd pass returns ".count($tRING)." points\n";
+			}
 		}
     foreach($tRING as $j => $point) {
 			
