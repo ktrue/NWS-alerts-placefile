@@ -758,7 +758,7 @@ Icon: 2, 0, "... <alert text>"
 		}
 
 		$firstCoord = $nCoords[0];
-		if(count($nCoords) > 99999) { # disabled after adding prune_polygon function
+		if(count($nCoords) > 12000) { # disabled after adding prune_polygon function
 			$out .= $prefix."; too many coordinates to plot on GRLevel3 for ".$zone." (".count($nCoords).") .. skipping.\n\n";
 			unset($nCoords);
 			$coords = '';
