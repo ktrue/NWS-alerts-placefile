@@ -1,11 +1,12 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors','1');
 /*
-*	Name:			NWS_Polygon_Alerts_Colored.php
-*	Author(s):	        Mike Davis 0617	, Ken True saratoga-weather.org
+*	Name:			    NWS_Placefile_Alerts.php
+*	Author(s):	  Mike Davis 0617	, Ken True saratoga-weather.org
 *	Description:	Reads NWS CAP1.1 ATOM RSS Alert Feeds for one or more states
 *                   and displays a GR2 placefile describing affected polygons.
-* rewritten to use api.weather.gov/alerts/active JSON from XML by Ken True
+* rewritten to use api.weather.gov/alerts/active JSON from original XML by Ken True 29-Aug-2023
 */
 # Version 2.00 - 29-Aug-2023 - initial release
 # Version 2.01 - 30-Aug-2023 - improved popup display and area display
@@ -22,8 +23,9 @@
 # Version 2.13 - 19-Oct-2023 - add Ramer-Douglas-Peucker functions to simplify coordinates where needed
 # Version 2.14 - 20-Oct-2023 - remove > 9999 limit with prune_polygon active
 # Version 2.15 - 20-Oct-2023 - remove > 9999 limit with multi-pass simplify_RDP calls to prune points
+# Version 2.16 - 22-Oct-2023 - add debug and sce=view, correct severity sorting issue
 
-$Version = "NWS_Placefile_Alerts.php - V2.15 - 20-Oct-2023 - saratoga-weather.org";
+$Version = "NWS_Placefile_Alerts.php - V2.16 - 22-Oct-2023 - saratoga-weather.org";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -80,6 +82,21 @@ $NWStimeZones = array (
 # -----------------------------------------------
 header("Content-Type: text/plain");
 global $pruneThreshold,$prunePoints;
+//--self downloader --
+if(isset($_REQUEST['sce']) and strtolower($_REQUEST['sce']) == 'view') {
+   $filenameReal = __FILE__;
+   $download_size = filesize($filenameReal);
+   header('Pragma: public');
+   header('Cache-Control: private');
+   header('Cache-Control: no-cache, must-revalidate');
+   header("Content-type: text/plain,charset=ISO-8859-1");
+   header("Accept-Ranges: bytes");
+   header("Content-Length: $download_size");
+   header('Connection: close');
+   
+   readfile($filenameReal);
+   exit;
+ }
 
 if(isset($doShowDetails)) {$showDetails = $doShowDetails;}
 if(isset($doShowMarine))      {$showMarine  = $doShowMarine;}
@@ -89,7 +106,7 @@ if($showMarine) {
 	$alertsURL = 'https://api.weather.gov/alerts/active?status=actual&region_type=marine';
 	$cacheFilename = str_replace('land','marine',$cacheFilename);
 }
-//*
+if(isset($_GET['debug']) and $_GET['debug'] == 'y') {$doDebug = true;}
 if(isset($_GET['lat'])) {$latitude = $_GET['lat'];}
 if(isset($_GET['lon'])) {$longitude = $_GET['lon'];}
 if(isset($_GET['version'])) {$GRversion = $_GET['version'];}
@@ -149,6 +166,7 @@ date_default_timezone_set($TZ);
 #
 $today = date("D M j G:i:s T Y");
 $output = "; $Version\n";
+$output .= "; running on PHP ".phpversion()."\n";
 $output .= "Title: NWS Alert $titleExtra - $today\n";
 $output .= "Refresh: 8\n";
 $output .= "Font: 1, 11, 1, \"Arial\"\n\n";
@@ -268,9 +286,9 @@ function JSONread($url) {
 		$event    = $A['properties']['event'];
 		$level    = get_priority($event);
 		if(isset($Jseverity["$level|$severity"])) {
-			$Jseverity["$level|$severity"] .= "$i|";
+				$Jseverity["$level|$severity"] .= "|$i";
 		} else {
-			$Jseverity["$level|$severity"] = "$i|";
+				$Jseverity["$level|$severity"] = "$i";
 		}
 	}
 	$JSORTED = array();
