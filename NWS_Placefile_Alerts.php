@@ -24,8 +24,9 @@ ini_set('display_errors','1');
 # Version 2.14 - 20-Oct-2023 - remove > 9999 limit with prune_polygon active
 # Version 2.15 - 20-Oct-2023 - remove > 9999 limit with multi-pass simplify_RDP calls to prune points
 # Version 2.16 - 22-Oct-2023 - add debug and sce=view, correct severity sorting issue
+# Version 2.17 - 26-Oct-2023 - find crude centroid of NWS supplied alert polygons to position Icon
 
-$Version = "NWS_Placefile_Alerts.php - V2.16 - 22-Oct-2023 - saratoga-weather.org";
+$Version = "NWS_Placefile_Alerts.php - V2.17 - 26-Oct-2023 - saratoga-weather.org";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -557,6 +558,10 @@ Icon: 2, 0, "... <alert text>"
     }
 	  $nCoords = explode("\n",$coords);
 	  $firstCoord = $nCoords[0]; # used for placement of icon if geometry is provided
+		$out .= "; NWS polygon starting $firstCoord for ".count($nCoords)." points.\n";
+		list($tFC,$tMsg) = get_center($nCoords);
+		if($tFC !== false) {$firstCoord = $tFC;}
+		$out .= $tMsg;
 		if($showDetails) {
 	   $coordsFrom = '\n(lines are around NWS alert area)\n';
 		} else {
@@ -1495,6 +1500,41 @@ function get_priority($event) {
 	return ('Level-0');
 }
 
+#---------------------------------------------------------------------------
+
+ function get_center($coords) {
+	 # truly a kludge to average the lat/long coords and use that as a center
+	 #
+	 
+	 if(!is_array($coords)) {
+		 return (array(false,"; get_center - coords not array\n"));
+	 }
+	 if(count($coords) < 3) {
+		 return (array(false,"; get_center - coords only has ".count($coords)." entries.\n"));
+	 }
+
+	 $lats = 0.0;
+	 $longs = 0.0;
+	 $count = 0;
+#	 for ($i=0;$i<count($coords)-1;$i++) { # skip last one as dup of first
+   foreach ($coords as $i => $entry) {
+		 if($i == 0) {continue;} # skip first entry as it is duplicated in last entry
+	   list($lat,$long) = explode(',',$entry.',');
+		 if(empty($long)) { continue; }
+		 $lats += (float)$lat;
+		 $longs += (float)$long;
+		 $count++;
+	 }
+	 
+	 if(count($coords) > 3) {
+		 $clat = sprintf("%01.4f",$lats / $count);
+		 $clon = sprintf("%01.4f",$longs / $count);
+		 $centerCoord = "$clat,$clon";
+	 }
+	 
+	 
+	 return(array($centerCoord,"; get_center returns centroid as $centerCoord for ".count($coords)." coords.\n"));
+ }
 #---------------------------------------------------------------------------
 
 /*
