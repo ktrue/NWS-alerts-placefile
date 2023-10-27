@@ -1504,7 +1504,8 @@ function get_priority($event) {
 
  function get_center($coords) {
 	 # truly a kludge to average the lat/long coords and use that as a center
-	 #
+	 # I'm not proud of this, but it works on mostly trapezoidal NWS alerts and
+	 # us better than just using the first coordinate as the anchor
 	 
 	 if(!is_array($coords)) {
 		 return (array(false,"; get_center - coords not array\n"));
@@ -1516,17 +1517,16 @@ function get_priority($event) {
 	 $lats = 0.0;
 	 $longs = 0.0;
 	 $count = 0;
-#	 for ($i=0;$i<count($coords)-1;$i++) { # skip last one as dup of first
    foreach ($coords as $i => $entry) {
 		 if($i == 0) {continue;} # skip first entry as it is duplicated in last entry
 	   list($lat,$long) = explode(',',$entry.',');
-		 if(empty($long)) { continue; }
+		 if(empty($long)) { continue; } # pesky null entry..skip
 		 $lats += (float)$lat;
 		 $longs += (float)$long;
 		 $count++;
 	 }
 	 
-	 if(count($coords) > 3) {
+	 if(count($coords) >= 3) {
 		 $clat = sprintf("%01.4f",$lats / $count);
 		 $clon = sprintf("%01.4f",$longs / $count);
 		 $centerCoord = "$clat,$clon";
