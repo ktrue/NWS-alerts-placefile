@@ -10,6 +10,1043 @@
     "type": "FeatureCollection",
     "features": [
         {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c5bddbd2d1acffee168256883b6b2bdab2b234b4.001.1",
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -77.74,
+                            39.39
+                        ],
+                        [
+                            -77.75,
+                            39.38
+                        ],
+                        [
+                            -77.74,
+                            39.36
+                        ],
+                        [
+                            -77.75999999999999,
+                            39.339999999999996
+                        ],
+                        [
+                            -77.71999999999998,
+                            39.31999999999999
+                        ],
+                        [
+                            -77.73999999999998,
+                            39.309999999999995
+                        ],
+                        [
+                            -77.76999999999998,
+                            39.24999999999999
+                        ],
+                        [
+                            -77.76999999999998,
+                            39.239999999999995
+                        ],
+                        [
+                            -77.78999999999998,
+                            39.209999999999994
+                        ],
+                        [
+                            -77.98999999999998,
+                            39.229999899999996
+                        ],
+                        [
+                            -78.02999999999999,
+                            39.26
+                        ],
+                        [
+                            -78.03999999999999,
+                            39.239999999999995
+                        ],
+                        [
+                            -78.11999999999999,
+                            39.24999999999999
+                        ],
+                        [
+                            -78.49,
+                            39.409999899999995
+                        ],
+                        [
+                            -78.49,
+                            39.489999999999995
+                        ],
+                        [
+                            -77.74,
+                            39.39
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c5bddbd2d1acffee168256883b6b2bdab2b234b4.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.c5bddbd2d1acffee168256883b6b2bdab2b234b4.001.1",
+                "areaDesc": "Frederick, VA; Berkeley, WV; Hampshire, WV; Jefferson, WV; Morgan, WV",
+                "geocode": {
+                    "SAME": [
+                        "051069",
+                        "054003",
+                        "054027",
+                        "054037",
+                        "054065"
+                    ],
+                    "UGC": [
+                        "VAC069",
+                        "WVC003",
+                        "WVC027",
+                        "WVC037",
+                        "WVC065"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/county/VAC069",
+                    "https://api.weather.gov/zones/county/WVC003",
+                    "https://api.weather.gov/zones/county/WVC027",
+                    "https://api.weather.gov/zones/county/WVC037",
+                    "https://api.weather.gov/zones/county/WVC065"
+                ],
+                "references": [],
+                "sent": "2025-02-17T02:10:00-05:00",
+                "effective": "2025-02-17T02:10:00-05:00",
+                "onset": "2025-02-17T02:10:00-05:00",
+                "expires": "2025-02-17T03:00:00-05:00",
+                "ends": "2025-02-17T03:00:00-05:00",
+                "status": "Actual",
+                "messageType": "Alert",
+                "category": "Met",
+                "severity": "Extreme",
+                "certainty": "Likely",
+                "urgency": "Expected",
+                "event": "Snow Squall Warning",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Baltimore MD/Washington DC",
+                "headline": "Snow Squall Warning issued February 17 at 2:10AM EST until February 17 at 3:00AM EST by NWS Baltimore MD/Washington DC",
+                "description": "The National Weather Service in Sterling Virginia has issued a\n\n* Snow Squall Warning for...\nNortheastern Frederick County in northwestern Virginia...\nJefferson County in the Panhandle of West Virginia...\nSouthwestern Morgan County in the Panhandle of West Virginia...\nSouthern Berkeley County in the Panhandle of West Virginia...\nNortheastern Hampshire County in eastern West Virginia...\n\n* Until 300 AM EST.\n\n* At 208 AM EST, a dangerous snow squall was located over Inwood, or\n8 miles southwest of Martinsburg, moving east at 50 mph.\n\nHAZARD...Intense bursts of heavy snow. Gusty winds leading to\nblowing snow and visibility rapidly falling to less than\none-quarter mile. Wind gusts greater than 50 mph could\nknock down tree limbs and blow around unsecured objects.\n\nSOURCE...Radar and webcams.\n\nIMPACT...Dangerous and life-threatening travel conditions are\nexpected to develop rapidly in the warning area.\n\nThis includes Interstate 81 between Martinsburg West Virginia and\nCedar Hill Virginia.\n\nLocations impacted include...\nCharles Town, Greenwood, Ranson, Inwood, Harpers Ferry,\nKearneysville, Corporation Of Ranson, Bolivar, Shenandoah Junction,\nMiddleway, Clear Brook, Ridgeway, Bunker Hill, Bloomery, Arden, Cedar\nHill, Unger, Millville, Brucetown, and Glengary.",
+                "instruction": "Consider avoiding or delaying travel until the snow squall passes\nyour location. If you must travel, use extra caution and allow extra\ntime. Rapid changes in visibility and slick road conditions may lead\nto accidents.\n\nIf traveling on a highway, find the nearest exit or rest area and\npark safely away from traffic. Allow snow squalls to pass before\nattempting to resume travel.",
+                "response": "Avoid",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "SQWLWX"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS51 KLWX 170710"
+                    ],
+                    "eventMotionDescription": [
+                        "2025-02-17T07:08:00-00:00...storm...282DEG...43KT...39.37,-78.09"
+                    ],
+                    "snowSquallDetection": [
+                        "OBSERVED"
+                    ],
+                    "snowSquallImpact": [
+                        "SIGNIFICANT"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ],
+                    "VTEC": [
+                        "/O.NEW.KLWX.SQ.W.0009.250217T0710Z-250217T0800Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2025-02-17T08:00:00+00:00"
+                    ],
+                    "WEAHandling": [
+                        "Imminent Threat"
+                    ],
+                    "CMAMtext": [
+                        "Snow Squall Warning til 3:00 AM EST. Sudden whiteouts. Icy roads. Slow down! -NWS"
+                    ],
+                    "CMAMlongtext": [
+                        "National Weather Service: Snow Squall Warning until 3:00 AM EST. Slow down or delay travel! Be ready for a sudden drop to near zero visibility and icy roads in heavy snow."
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.f4b0189aeaee0d97a97fc5b61aae3a7771cea6a7.001.1",
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -77.97,
+                            41.02
+                        ],
+                        [
+                            -77.47,
+                            40.85
+                        ],
+                        [
+                            -77.8,
+                            40.86
+                        ],
+                        [
+                            -78.00999999999999,
+                            40.9099999
+                        ],
+                        [
+                            -78.20999989999999,
+                            41.02
+                        ],
+                        [
+                            -77.97,
+                            41.02
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.f4b0189aeaee0d97a97fc5b61aae3a7771cea6a7.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.f4b0189aeaee0d97a97fc5b61aae3a7771cea6a7.001.1",
+                "areaDesc": "Clearfield; Northern Centre; Southern Centre",
+                "geocode": {
+                    "SAME": [
+                        "042033",
+                        "042027"
+                    ],
+                    "UGC": [
+                        "PAZ017",
+                        "PAZ018",
+                        "PAZ019"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/PAZ017",
+                    "https://api.weather.gov/zones/forecast/PAZ018",
+                    "https://api.weather.gov/zones/forecast/PAZ019"
+                ],
+                "references": [],
+                "sent": "2025-02-17T02:07:00-05:00",
+                "effective": "2025-02-17T02:07:00-05:00",
+                "onset": "2025-02-17T02:07:00-05:00",
+                "expires": "2025-02-17T02:45:00-05:00",
+                "ends": null,
+                "status": "Actual",
+                "messageType": "Alert",
+                "category": "Met",
+                "severity": "Moderate",
+                "certainty": "Observed",
+                "urgency": "Expected",
+                "event": "Special Weather Statement",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS State College PA",
+                "headline": "Special Weather Statement issued February 17 at 2:07AM EST by NWS State College PA",
+                "description": "HAZARDS...A band of heavy snow accompanied by winds of up to 40 MPH\nwhich can rapidly reduce visibility to less than one mile.\n\nLOCATION AND MOVEMENT...At 206 AM EST, a band of heavy snow was along\na line extending from near Pine Glen to Bellefonte and moving east at\n30 MPH.\n\nTHIS BAND OF HEAVY SNOW WILL BE NEAR...\nMilesburg, Pleasant Gap, and Zion around 210 AM EST.\nSpring Mills around 220 AM EST.\n\nFor those driving on Interstate 80, this includes areas between the\nKylertown and Snow Shoe exits, specifically from mile markers 135 to\n145.\n\nThis includes Interstate 99 from mile markers 78 to 85.\n\nSAFETY INFO...\nConditions can deteriorate rapidly in winter weather situations. Be\nprepared for snow or ice covered roads. Slow down and allow extra\ntime to reach your destination.",
+                "instruction": null,
+                "response": "Execute",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "SPSCTP"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS81 KCTP 170707"
+                    ],
+                    "NWSheadline": [
+                        "A BAND OF HEAVY SNOW WILL AFFECT PARTS OF NORTHERN CENTRE... CLEARFIELD...AND SOUTHERN CENTRE COUNTIES"
+                    ],
+                    "eventMotionDescription": [
+                        "2025-02-17T07:06:00-00:00...storm...283DEG...24KT...41.01,-78.14 40.91,-77.78"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.002.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.002.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.002.1",
+                "areaDesc": "Central Penobscot; Southern Piscataquis; Northern Washington",
+                "geocode": {
+                    "SAME": [
+                        "023019",
+                        "023021",
+                        "023029"
+                    ],
+                    "UGC": [
+                        "MEZ011",
+                        "MEZ031",
+                        "MEZ032"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/MEZ011",
+                    "https://api.weather.gov/zones/forecast/MEZ031",
+                    "https://api.weather.gov/zones/forecast/MEZ032"
+                ],
+                "references": [
+                    {
+                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.002.1",
+                        "identifier": "urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.002.1",
+                        "sender": "w-nws.webmaster@noaa.gov",
+                        "sent": "2025-02-16T18:29:00-05:00"
+                    }
+                ],
+                "sent": "2025-02-17T02:06:00-05:00",
+                "effective": "2025-02-17T02:06:00-05:00",
+                "onset": "2025-02-17T02:06:00-05:00",
+                "expires": "2025-02-17T04:00:00-05:00",
+                "ends": "2025-02-17T04:00:00-05:00",
+                "status": "Actual",
+                "messageType": "Update",
+                "category": "Met",
+                "severity": "Severe",
+                "certainty": "Likely",
+                "urgency": "Expected",
+                "event": "Winter Storm Warning",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Caribou ME",
+                "headline": "Winter Storm Warning issued February 17 at 2:06AM EST until February 17 at 4:00AM EST by NWS Caribou ME",
+                "description": "* WHAT...Snow. Additional snow accumulations up to one inch. Storm\ntotal snow and sleet accumulations between 6 and 10 inches and ice\naccumulations around a light glaze.\n\n* WHERE...Southern Piscataquis, Northern Washington, and Central\nPenobscot Counties.\n\n* WHEN...Until 4 AM EST early this morning.\n\n* IMPACTS...Plan on slippery road conditions.",
+                "instruction": "A Winter Storm Warning for snow means severe winter weather\nconditions will make travel extremely dangerous. If you must travel,\nkeep an extra flashlight, food, and water in your vehicle in case of\nan emergency.\n\nThe latest road conditions for Maine can be obtained by going to\nnewengland511.org.",
+                "response": "Prepare",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "WSWCAR"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS41 KCAR 170706"
+                    ],
+                    "NWSheadline": [
+                        "WINTER STORM WARNING REMAINS IN EFFECT UNTIL 4 AM EST EARLY THIS MORNING"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ],
+                    "VTEC": [
+                        "/O.CON.KCAR.WS.W.0003.000000T0000Z-250217T0900Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2025-02-17T09:00:00+00:00"
+                    ],
+                    "expiredReferences": [
+                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.002.1,2025-02-16T15:23:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.02972719e41b27d0ee2f5505925fb8a86a1e21e0.003.1,2025-02-16T02:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8df1a99aca2457dc5577310c4648667e9a01d9d8.003.1,2025-02-15T21:26:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f2cb74e91b3d330412d5087bbadae7a83c55ca57.003.1,2025-02-15T15:47:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9fd3095cb25ea4637937046c10a83c246f26c553.001.1,2025-02-15T12:36:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0ab60ecd60ee4fd2e9379b5171b9cfe3afd74024.001.2,2025-02-15T02:58:00-05:00"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.004.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.004.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.004.1",
+                "areaDesc": "Coastal Hancock; Coastal Washington",
+                "geocode": {
+                    "SAME": [
+                        "023009",
+                        "023029"
+                    ],
+                    "UGC": [
+                        "MEZ029",
+                        "MEZ030"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/MEZ029",
+                    "https://api.weather.gov/zones/forecast/MEZ030"
+                ],
+                "references": [
+                    {
+                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.004.1",
+                        "identifier": "urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.004.1",
+                        "sender": "w-nws.webmaster@noaa.gov",
+                        "sent": "2025-02-16T18:29:00-05:00"
+                    }
+                ],
+                "sent": "2025-02-17T02:06:00-05:00",
+                "effective": "2025-02-17T02:06:00-05:00",
+                "onset": "2025-02-17T02:06:00-05:00",
+                "expires": "2025-02-17T04:00:00-05:00",
+                "ends": "2025-02-17T04:00:00-05:00",
+                "status": "Actual",
+                "messageType": "Update",
+                "category": "Met",
+                "severity": "Severe",
+                "certainty": "Likely",
+                "urgency": "Expected",
+                "event": "Winter Storm Warning",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Caribou ME",
+                "headline": "Winter Storm Warning issued February 17 at 2:06AM EST until February 17 at 4:00AM EST by NWS Caribou ME",
+                "description": "* WHAT...Snow. Additional snow accumulations up to one inch. Storm\ntotal snow and sleet accumulations between 3 and 5 inches and ice\naccumulations between two tenths and one quarter of an inch.\nWinds gusting as high as 35 mph.\n\n* WHERE...Coastal Hancock and Coastal Washington Counties.\n\n* WHEN...Until 4 AM EST early this morning.\n\n* IMPACTS...Plan on slippery road conditions.\n\n* ADDITIONAL DETAILS...A flash freeze has occurred in Eastern\nWashington County. Expect very icy conditions on untreated\nsurfaces.",
+                "instruction": "A Winter Storm Warning for snow means severe winter weather\nconditions will make travel extremely dangerous. If you must travel,\nkeep an extra flashlight, food, and water in your vehicle in case of\nan emergency.\n\nThe latest road conditions for Maine can be obtained by going to\nnewengland511.org.",
+                "response": "Prepare",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "WSWCAR"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS41 KCAR 170706"
+                    ],
+                    "NWSheadline": [
+                        "WINTER STORM WARNING REMAINS IN EFFECT UNTIL 4 AM EST EARLY THIS MORNING"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ],
+                    "VTEC": [
+                        "/O.CON.KCAR.WS.W.0003.000000T0000Z-250217T0900Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2025-02-17T09:00:00+00:00"
+                    ],
+                    "expiredReferences": [
+                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.004.1,2025-02-16T15:23:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.02972719e41b27d0ee2f5505925fb8a86a1e21e0.002.1,2025-02-16T02:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8df1a99aca2457dc5577310c4648667e9a01d9d8.002.1,2025-02-15T21:26:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f2cb74e91b3d330412d5087bbadae7a83c55ca57.002.2,2025-02-15T15:47:00-05:00"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.003.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.003.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.003.1",
+                "areaDesc": "Southern Penobscot; Interior Hancock; Central Washington",
+                "geocode": {
+                    "SAME": [
+                        "023019",
+                        "023009",
+                        "023029"
+                    ],
+                    "UGC": [
+                        "MEZ015",
+                        "MEZ016",
+                        "MEZ017"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/MEZ015",
+                    "https://api.weather.gov/zones/forecast/MEZ016",
+                    "https://api.weather.gov/zones/forecast/MEZ017"
+                ],
+                "references": [
+                    {
+                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.003.1",
+                        "identifier": "urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.003.1",
+                        "sender": "w-nws.webmaster@noaa.gov",
+                        "sent": "2025-02-16T18:29:00-05:00"
+                    }
+                ],
+                "sent": "2025-02-17T02:06:00-05:00",
+                "effective": "2025-02-17T02:06:00-05:00",
+                "onset": "2025-02-17T02:06:00-05:00",
+                "expires": "2025-02-17T04:00:00-05:00",
+                "ends": "2025-02-17T04:00:00-05:00",
+                "status": "Actual",
+                "messageType": "Update",
+                "category": "Met",
+                "severity": "Severe",
+                "certainty": "Likely",
+                "urgency": "Expected",
+                "event": "Winter Storm Warning",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Caribou ME",
+                "headline": "Winter Storm Warning issued February 17 at 2:06AM EST until February 17 at 4:00AM EST by NWS Caribou ME",
+                "description": "* WHAT...Snow. Additional snow accumulations up to one inch. Storm\ntotal snow and sleet accumulations between 5 and 8 inches and ice\naccumulations up to two tenths of an inch.\n\n* WHERE...Central Washington, Interior Hancock, and Southern\nPenobscot Counties.\n\n* WHEN...Until 4 AM EST early this morning.\n\n* IMPACTS...Plan on slippery road conditions.",
+                "instruction": "A Winter Storm Warning for snow means severe winter weather\nconditions will make travel extremely dangerous. If you must travel,\nkeep an extra flashlight, food, and water in your vehicle in case of\nan emergency.\n\nThe latest road conditions for Maine can be obtained by going to\nnewengland511.org.",
+                "response": "Prepare",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "WSWCAR"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS41 KCAR 170706"
+                    ],
+                    "NWSheadline": [
+                        "WINTER STORM WARNING REMAINS IN EFFECT UNTIL 4 AM EST EARLY THIS MORNING"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ],
+                    "VTEC": [
+                        "/O.CON.KCAR.WS.W.0003.000000T0000Z-250217T0900Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2025-02-17T09:00:00+00:00"
+                    ],
+                    "expiredReferences": [
+                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.003.1,2025-02-16T15:23:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.02972719e41b27d0ee2f5505925fb8a86a1e21e0.001.1,2025-02-16T02:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8df1a99aca2457dc5577310c4648667e9a01d9d8.001.1,2025-02-15T21:26:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f2cb74e91b3d330412d5087bbadae7a83c55ca57.001.2,2025-02-15T15:47:00-05:00"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.001.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.4581f9352bce3e9d30d308721b8172a879e015a5.001.1",
+                "areaDesc": "Northwest Aroostook; Northeast Aroostook; Northern Somerset; Northern Piscataquis; Northern Penobscot; Southeast Aroostook; Central Piscataquis",
+                "geocode": {
+                    "SAME": [
+                        "023003",
+                        "023025",
+                        "023021",
+                        "023019"
+                    ],
+                    "UGC": [
+                        "MEZ001",
+                        "MEZ002",
+                        "MEZ003",
+                        "MEZ004",
+                        "MEZ005",
+                        "MEZ006",
+                        "MEZ010"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/MEZ001",
+                    "https://api.weather.gov/zones/forecast/MEZ002",
+                    "https://api.weather.gov/zones/forecast/MEZ003",
+                    "https://api.weather.gov/zones/forecast/MEZ004",
+                    "https://api.weather.gov/zones/forecast/MEZ005",
+                    "https://api.weather.gov/zones/forecast/MEZ006",
+                    "https://api.weather.gov/zones/forecast/MEZ010"
+                ],
+                "references": [
+                    {
+                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.001.1",
+                        "identifier": "urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.001.1",
+                        "sender": "w-nws.webmaster@noaa.gov",
+                        "sent": "2025-02-16T18:29:00-05:00"
+                    }
+                ],
+                "sent": "2025-02-17T02:06:00-05:00",
+                "effective": "2025-02-17T02:06:00-05:00",
+                "onset": "2025-02-17T02:06:00-05:00",
+                "expires": "2025-02-17T10:15:00-05:00",
+                "ends": "2025-02-17T13:00:00-05:00",
+                "status": "Actual",
+                "messageType": "Update",
+                "category": "Met",
+                "severity": "Severe",
+                "certainty": "Likely",
+                "urgency": "Expected",
+                "event": "Winter Storm Warning",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Caribou ME",
+                "headline": "Winter Storm Warning issued February 17 at 2:06AM EST until February 17 at 1:00PM EST by NWS Caribou ME",
+                "description": "* WHAT...Snow. Additional snow accumulations between 1 and 3 inches.\nTotal snow accumulations between 10 and 20 inches. Winds gusting\nas high as 45 mph.\n\n* WHERE...Portions of Central Highlands, Far Eastern, Far Northern,\nand North Woods Maine\n\n* WHEN...Until 1 PM EST this afternoon.\n\n* IMPACTS...Travel could be very difficult to impossible. Areas of\nblowing snow could significantly reduce visibility. The hazardous\nconditions will impact the Monday morning commute.\n\n* ADDITIONAL DETAILS...The worst of the blowing snow will be across\nthe agricultural open areas of Aroostook and Northern Penobscot\nCounties on Monday. Be prepared for localized whiteouts with near\nzero visibility creating extremely dangerous driving conditions.\nPotentially impacted roads include but not limited to...Routes 1,\n1A, 2, 10, 11, 89, 161, 163, 167 and 212.",
+                "instruction": "A Winter Storm Warning for snow means severe winter weather\nconditions will make travel extremely dangerous. If you must travel,\nkeep an extra flashlight, food, and water in your vehicle in case of\nan emergency.\n\nThe latest road conditions for Maine can be obtained by going to\nnewengland511.org.",
+                "response": "Prepare",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "WSWCAR"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS41 KCAR 170706"
+                    ],
+                    "NWSheadline": [
+                        "WINTER STORM WARNING REMAINS IN EFFECT UNTIL 1 PM EST THIS AFTERNOON"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ],
+                    "VTEC": [
+                        "/O.CON.KCAR.WS.W.0003.000000T0000Z-250217T1800Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2025-02-17T18:00:00+00:00"
+                    ],
+                    "expiredReferences": [
+                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.001.1,2025-02-16T15:23:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.02972719e41b27d0ee2f5505925fb8a86a1e21e0.004.1,2025-02-16T02:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8df1a99aca2457dc5577310c4648667e9a01d9d8.004.1,2025-02-15T21:26:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f2cb74e91b3d330412d5087bbadae7a83c55ca57.004.1,2025-02-15T15:47:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9fd3095cb25ea4637937046c10a83c246f26c553.002.1,2025-02-15T12:36:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0ab60ecd60ee4fd2e9379b5171b9cfe3afd74024.002.2,2025-02-15T02:58:00-05:00"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.86ca74f4518c84872e633fffd11beb724daacf52.001.1",
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -78.14,
+                            40.43
+                        ],
+                        [
+                            -78.05,
+                            40.58
+                        ],
+                        [
+                            -77.55,
+                            40.42
+                        ],
+                        [
+                            -77.73,
+                            40.29
+                        ],
+                        [
+                            -78.14,
+                            40.43
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.86ca74f4518c84872e633fffd11beb724daacf52.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.86ca74f4518c84872e633fffd11beb724daacf52.001.1",
+                "areaDesc": "Huntingdon; Mifflin; Juniata",
+                "geocode": {
+                    "SAME": [
+                        "042061",
+                        "042087",
+                        "042067"
+                    ],
+                    "UGC": [
+                        "PAZ026",
+                        "PAZ027",
+                        "PAZ028"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/PAZ026",
+                    "https://api.weather.gov/zones/forecast/PAZ027",
+                    "https://api.weather.gov/zones/forecast/PAZ028"
+                ],
+                "references": [],
+                "sent": "2025-02-17T02:02:00-05:00",
+                "effective": "2025-02-17T02:02:00-05:00",
+                "onset": "2025-02-17T02:02:00-05:00",
+                "expires": "2025-02-17T02:30:00-05:00",
+                "ends": null,
+                "status": "Actual",
+                "messageType": "Alert",
+                "category": "Met",
+                "severity": "Moderate",
+                "certainty": "Observed",
+                "urgency": "Expected",
+                "event": "Special Weather Statement",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS State College PA",
+                "headline": "Special Weather Statement issued February 17 at 2:02AM EST by NWS State College PA",
+                "description": "HAZARDS...A band of heavy snow accompanied by winds of up to 30 MPH\nwhich can rapidly reduce visibility to less than one mile.\n\nLOCATION AND MOVEMENT...At 201 AM EST, a band of heavy snow was over\nRaystown Dam moving east at 40 MPH.\n\nTHIS BAND OF HEAVY SNOW WILL BE NEAR...\nMount Union around 205 AM EST.\nBlacklog around 220 AM EST.\n\nThis includes the following highways...\nRoute 22 from Huntingdon to Mount Union.\nRoutes 22 and 522 from Mount Union to west of McVeytown.\nRoute 522 from south of Mount Union to Mount Union.\n\nSAFETY INFO...\nConditions can deteriorate rapidly in winter weather situations. Be\nprepared for snow or ice covered roads. Slow down and allow extra\ntime to reach your destination.",
+                "instruction": null,
+                "response": "Execute",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "SPSCTP"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS81 KCTP 170702"
+                    ],
+                    "NWSheadline": [
+                        "A BAND OF HEAVY SNOW WILL AFFECT PARTS OF JUNIATA...HUNTINGDON... AND MIFFLIN COUNTIES"
+                    ],
+                    "eventMotionDescription": [
+                        "2025-02-17T07:01:00-00:00...storm...288DEG...35KT...40.46,-77.96"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.34072ba089affba609a211c05b583cf0c12bbecd.001.1",
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -79.99,
+                            40.67
+                        ],
+                        [
+                            -80.14999999999999,
+                            40.67
+                        ],
+                        [
+                            -80.13999999999999,
+                            40.620000000000005
+                        ],
+                        [
+                            -80.17999999999999,
+                            40.61000000000001
+                        ],
+                        [
+                            -80.22999999999999,
+                            40.57000000000001
+                        ],
+                        [
+                            -80.79999999999998,
+                            40.900000000000006
+                        ],
+                        [
+                            -80.51999999999998,
+                            40.900000000000006
+                        ],
+                        [
+                            -80.51999999999998,
+                            40.9099999
+                        ],
+                        [
+                            -79.99,
+                            40.67
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.34072ba089affba609a211c05b583cf0c12bbecd.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.34072ba089affba609a211c05b583cf0c12bbecd.001.1",
+                "areaDesc": "Columbiana; Lawrence; Butler; Beaver; Allegheny",
+                "geocode": {
+                    "SAME": [
+                        "039029",
+                        "042073",
+                        "042019",
+                        "042007",
+                        "042003"
+                    ],
+                    "UGC": [
+                        "OHZ041",
+                        "PAZ013",
+                        "PAZ014",
+                        "PAZ020",
+                        "PAZ021"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/OHZ041",
+                    "https://api.weather.gov/zones/forecast/PAZ013",
+                    "https://api.weather.gov/zones/forecast/PAZ014",
+                    "https://api.weather.gov/zones/forecast/PAZ020",
+                    "https://api.weather.gov/zones/forecast/PAZ021"
+                ],
+                "references": [],
+                "sent": "2025-02-17T02:01:00-05:00",
+                "effective": "2025-02-17T02:01:00-05:00",
+                "onset": "2025-02-17T02:01:00-05:00",
+                "expires": "2025-02-17T02:30:00-05:00",
+                "ends": null,
+                "status": "Actual",
+                "messageType": "Alert",
+                "category": "Met",
+                "severity": "Moderate",
+                "certainty": "Observed",
+                "urgency": "Expected",
+                "event": "Special Weather Statement",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Pittsburgh PA",
+                "headline": "Special Weather Statement issued February 17 at 2:01AM EST by NWS Pittsburgh PA",
+                "description": "At 201 AM EST, an area of heavy snow was located near Beaver Falls,\nmoving east at 20 mph.\n\nLocations impacted include...\nCranberry, Aliquippa, Beaver Falls, Columbiana, Monaca, East\nPalestine, Economy, Ambridge, New Brighton, Beaver, Baden, Rochester,\nOhioville, Harmony Township, Seven Fields, Leetonia, Industry, New\nWaterford, Leetsdale, and Patterson Township.\n\nThis includes the following highways...\nPennsylvania Turnpike between mile markers 8 and 29.\nInterstate 79 in Pennsylvania between mile markers 79 and 81.\nInterstate 376 in Pennsylvania between mile markers 26 and 42.\n\nSnow will lead to reduced visibilities and hazardous travel\nconditions.",
+                "instruction": null,
+                "response": "Execute",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "SPSPBZ"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS81 KPBZ 170701"
+                    ],
+                    "NWSheadline": [
+                        "AN AREA OF HEAVY SNOW WILL AFFECT NORTHEASTERN COLUMBIANA... NORTHERN BEAVER...SOUTHWESTERN LAWRENCE...SOUTHWESTERN BUTLER AND NORTHWESTERN ALLEGHENY COUNTIES"
+                    ],
+                    "eventMotionDescription": [
+                        "2025-02-17T07:01:00-00:00...storm...287DEG...17KT...40.75,-80.41"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.3ccac1786934d92cf735e2626e86f6a050616790.001.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.3ccac1786934d92cf735e2626e86f6a050616790.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.3ccac1786934d92cf735e2626e86f6a050616790.001.1",
+                "areaDesc": "Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Overton; Fentress; Perry; Hickman; Williamson",
+                "geocode": {
+                    "SAME": [
+                        "047161",
+                        "047125",
+                        "047147",
+                        "047165",
+                        "047111",
+                        "047027",
+                        "047137",
+                        "047083",
+                        "047085",
+                        "047043",
+                        "047021",
+                        "047037",
+                        "047189",
+                        "047169",
+                        "047159",
+                        "047087",
+                        "047133",
+                        "047049",
+                        "047135",
+                        "047081",
+                        "047187"
+                    ],
+                    "UGC": [
+                        "TNZ005",
+                        "TNZ006",
+                        "TNZ007",
+                        "TNZ008",
+                        "TNZ009",
+                        "TNZ010",
+                        "TNZ011",
+                        "TNZ023",
+                        "TNZ024",
+                        "TNZ025",
+                        "TNZ026",
+                        "TNZ027",
+                        "TNZ028",
+                        "TNZ029",
+                        "TNZ030",
+                        "TNZ031",
+                        "TNZ033",
+                        "TNZ034",
+                        "TNZ056",
+                        "TNZ057",
+                        "TNZ059"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/TNZ005",
+                    "https://api.weather.gov/zones/forecast/TNZ006",
+                    "https://api.weather.gov/zones/forecast/TNZ007",
+                    "https://api.weather.gov/zones/forecast/TNZ008",
+                    "https://api.weather.gov/zones/forecast/TNZ009",
+                    "https://api.weather.gov/zones/forecast/TNZ010",
+                    "https://api.weather.gov/zones/forecast/TNZ011",
+                    "https://api.weather.gov/zones/forecast/TNZ023",
+                    "https://api.weather.gov/zones/forecast/TNZ024",
+                    "https://api.weather.gov/zones/forecast/TNZ025",
+                    "https://api.weather.gov/zones/forecast/TNZ026",
+                    "https://api.weather.gov/zones/forecast/TNZ027",
+                    "https://api.weather.gov/zones/forecast/TNZ028",
+                    "https://api.weather.gov/zones/forecast/TNZ029",
+                    "https://api.weather.gov/zones/forecast/TNZ030",
+                    "https://api.weather.gov/zones/forecast/TNZ031",
+                    "https://api.weather.gov/zones/forecast/TNZ033",
+                    "https://api.weather.gov/zones/forecast/TNZ034",
+                    "https://api.weather.gov/zones/forecast/TNZ056",
+                    "https://api.weather.gov/zones/forecast/TNZ057",
+                    "https://api.weather.gov/zones/forecast/TNZ059"
+                ],
+                "references": [
+                    {
+                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.f9b52597da31f255392db35626213bdaae4e1de6.001.1",
+                        "identifier": "urn:oid:2.49.0.1.840.0.f9b52597da31f255392db35626213bdaae4e1de6.001.1",
+                        "sender": "w-nws.webmaster@noaa.gov",
+                        "sent": "2025-02-16T21:11:00-06:00"
+                    }
+                ],
+                "sent": "2025-02-17T00:59:00-06:00",
+                "effective": "2025-02-17T00:59:00-06:00",
+                "onset": "2025-02-18T21:00:00-06:00",
+                "expires": "2025-02-17T15:00:00-06:00",
+                "ends": "2025-02-19T12:00:00-06:00",
+                "status": "Actual",
+                "messageType": "Update",
+                "category": "Met",
+                "severity": "Severe",
+                "certainty": "Possible",
+                "urgency": "Future",
+                "event": "Winter Storm Watch",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Nashville TN",
+                "headline": "Winter Storm Watch issued February 17 at 12:59AM CST until February 19 at 12:00PM CST by NWS Nashville TN",
+                "description": "* WHAT...Heavy snow possible. Total snow accumulations between 2 and\n4 inches possible.\n\n* WHERE...A portion of Middle Tennessee.\n\n* WHEN...From Tuesday evening through Wednesday morning.\n\n* IMPACTS...Plan on slippery road conditions. The hazardous\nconditions could impact the Wednesday morning commute.",
+                "instruction": "Monitor the latest forecasts for updates on this situation.",
+                "response": "Prepare",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "WSWOHX"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS44 KOHX 170659"
+                    ],
+                    "NWSheadline": [
+                        "WINTER STORM WATCH REMAINS IN EFFECT FROM TUESDAY EVENING THROUGH WEDNESDAY MORNING"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ],
+                    "VTEC": [
+                        "/O.CON.KOHX.WS.A.0002.250219T0300Z-250219T1800Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2025-02-19T18:00:00+00:00"
+                    ],
+                    "expiredReferences": [
+                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.a597a498879af7b624aaee5894df2a90f2830e5d.001.1,2025-02-16T13:34:00-06:00"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.abb0eb5d6e788aa9998ceef5f87ba87bce714e3a.001.1",
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -79.69,
+                            41.1
+                        ],
+                        [
+                            -79.69,
+                            40.81
+                        ],
+                        [
+                            -80.52,
+                            41.13
+                        ],
+                        [
+                            -80.52,
+                            41.29
+                        ],
+                        [
+                            -79.69,
+                            41.1
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.abb0eb5d6e788aa9998ceef5f87ba87bce714e3a.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.abb0eb5d6e788aa9998ceef5f87ba87bce714e3a.001.1",
+                "areaDesc": "Mercer; Lawrence; Butler",
+                "geocode": {
+                    "SAME": [
+                        "042085",
+                        "042073",
+                        "042019"
+                    ],
+                    "UGC": [
+                        "PAZ007",
+                        "PAZ013",
+                        "PAZ014"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/PAZ007",
+                    "https://api.weather.gov/zones/forecast/PAZ013",
+                    "https://api.weather.gov/zones/forecast/PAZ014"
+                ],
+                "references": [],
+                "sent": "2025-02-17T01:59:00-05:00",
+                "effective": "2025-02-17T01:59:00-05:00",
+                "onset": "2025-02-17T01:59:00-05:00",
+                "expires": "2025-02-17T02:30:00-05:00",
+                "ends": null,
+                "status": "Actual",
+                "messageType": "Alert",
+                "category": "Met",
+                "severity": "Moderate",
+                "certainty": "Observed",
+                "urgency": "Expected",
+                "event": "Special Weather Statement",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Pittsburgh PA",
+                "headline": "Special Weather Statement issued February 17 at 1:59AM EST by NWS Pittsburgh PA",
+                "description": "At 159 AM EST, an area of heavy snow was located near\nShanor-Northvue, or near Butler, moving east at 20 mph.\n\nWinds in excess of 30 mph are possible with this area of heavy snow.\n\nLocations impacted include...\nHermitage, Sharon, Grove City, Sharpsville, Homeacre-Lyndora,\nFarrell, Shanor-Northvue, Slippery Rock, New Wilmington, Mercer,\nPulaski, Chicora, Harrisville, West Middlesex, Parker, Plain Grove\nTownship, East Butler, Wheatland, Bruin, and West Liberty.\n\nThis includes the following highways...\nInterstate 79 in Pennsylvania between mile markers 102 and 118.\nInterstate 80 in Pennsylvania between mile markers 0 and 21.\nInterstate 376 in Pennsylvania between mile markers 0 and 8.\n\nSnow will lead to reduced visibilities and hazardous travel\nconditions.\n\nUse extra caution if you must travel into or through this intense\nsnow shower. Rapid changes in visibility and potentially slick roads\nare likely to lead to accidents. Consider delaying travel until the\nsquall passes your location.",
+                "instruction": null,
+                "response": "Execute",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "SPSPBZ"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS81 KPBZ 170659"
+                    ],
+                    "NWSheadline": [
+                        "AN AREA OF HEAVY SNOW WILL AFFECT SOUTHERN MERCER...NORTHEASTERN LAWRENCE AND NORTHERN BUTLER COUNTIES"
+                    ],
+                    "eventMotionDescription": [
+                        "2025-02-17T06:59:00-00:00...storm...287DEG...17KT...40.95,-79.87"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ]
+                }
+            }
+        },
+        {
             "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.ffbcf1c763e14298dbbdab9294075f7a390c40b4.001.1",
             "type": "Feature",
             "geometry": {
@@ -10720,139 +11757,6 @@
                     ],
                     "expiredReferences": [
                         "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.be2199b8686fc4cd25f3e17a5e136697dae6af33.002.2,2025-02-16T02:22:00-06:00"
-                    ]
-                }
-            }
-        },
-        {
-            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.f9b52597da31f255392db35626213bdaae4e1de6.001.1",
-            "type": "Feature",
-            "geometry": null,
-            "properties": {
-                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.f9b52597da31f255392db35626213bdaae4e1de6.001.1",
-                "@type": "wx:Alert",
-                "id": "urn:oid:2.49.0.1.840.0.f9b52597da31f255392db35626213bdaae4e1de6.001.1",
-                "areaDesc": "Stewart; Montgomery; Robertson; Sumner; Macon; Clay; Pickett; Houston; Humphreys; Dickson; Cheatham; Davidson; Wilson; Trousdale; Smith; Jackson; Overton; Fentress; Perry; Hickman; Williamson",
-                "geocode": {
-                    "SAME": [
-                        "047161",
-                        "047125",
-                        "047147",
-                        "047165",
-                        "047111",
-                        "047027",
-                        "047137",
-                        "047083",
-                        "047085",
-                        "047043",
-                        "047021",
-                        "047037",
-                        "047189",
-                        "047169",
-                        "047159",
-                        "047087",
-                        "047133",
-                        "047049",
-                        "047135",
-                        "047081",
-                        "047187"
-                    ],
-                    "UGC": [
-                        "TNZ005",
-                        "TNZ006",
-                        "TNZ007",
-                        "TNZ008",
-                        "TNZ009",
-                        "TNZ010",
-                        "TNZ011",
-                        "TNZ023",
-                        "TNZ024",
-                        "TNZ025",
-                        "TNZ026",
-                        "TNZ027",
-                        "TNZ028",
-                        "TNZ029",
-                        "TNZ030",
-                        "TNZ031",
-                        "TNZ033",
-                        "TNZ034",
-                        "TNZ056",
-                        "TNZ057",
-                        "TNZ059"
-                    ]
-                },
-                "affectedZones": [
-                    "https://api.weather.gov/zones/forecast/TNZ005",
-                    "https://api.weather.gov/zones/forecast/TNZ006",
-                    "https://api.weather.gov/zones/forecast/TNZ007",
-                    "https://api.weather.gov/zones/forecast/TNZ008",
-                    "https://api.weather.gov/zones/forecast/TNZ009",
-                    "https://api.weather.gov/zones/forecast/TNZ010",
-                    "https://api.weather.gov/zones/forecast/TNZ011",
-                    "https://api.weather.gov/zones/forecast/TNZ023",
-                    "https://api.weather.gov/zones/forecast/TNZ024",
-                    "https://api.weather.gov/zones/forecast/TNZ025",
-                    "https://api.weather.gov/zones/forecast/TNZ026",
-                    "https://api.weather.gov/zones/forecast/TNZ027",
-                    "https://api.weather.gov/zones/forecast/TNZ028",
-                    "https://api.weather.gov/zones/forecast/TNZ029",
-                    "https://api.weather.gov/zones/forecast/TNZ030",
-                    "https://api.weather.gov/zones/forecast/TNZ031",
-                    "https://api.weather.gov/zones/forecast/TNZ033",
-                    "https://api.weather.gov/zones/forecast/TNZ034",
-                    "https://api.weather.gov/zones/forecast/TNZ056",
-                    "https://api.weather.gov/zones/forecast/TNZ057",
-                    "https://api.weather.gov/zones/forecast/TNZ059"
-                ],
-                "references": [
-                    {
-                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.a597a498879af7b624aaee5894df2a90f2830e5d.001.1",
-                        "identifier": "urn:oid:2.49.0.1.840.0.a597a498879af7b624aaee5894df2a90f2830e5d.001.1",
-                        "sender": "w-nws.webmaster@noaa.gov",
-                        "sent": "2025-02-16T13:34:00-06:00"
-                    }
-                ],
-                "sent": "2025-02-16T21:11:00-06:00",
-                "effective": "2025-02-16T21:11:00-06:00",
-                "onset": "2025-02-18T21:00:00-06:00",
-                "expires": "2025-02-17T05:00:00-06:00",
-                "ends": "2025-02-19T12:00:00-06:00",
-                "status": "Actual",
-                "messageType": "Update",
-                "category": "Met",
-                "severity": "Severe",
-                "certainty": "Possible",
-                "urgency": "Future",
-                "event": "Winter Storm Watch",
-                "sender": "w-nws.webmaster@noaa.gov",
-                "senderName": "NWS Nashville TN",
-                "headline": "Winter Storm Watch issued February 16 at 9:11PM CST until February 19 at 12:00PM CST by NWS Nashville TN",
-                "description": "* WHAT...Heavy snow possible. Total snow accumulations between 2 and\n5 inches possible.\n\n* WHERE...A portion of Middle Tennessee.\n\n* WHEN...From Tuesday evening through Wednesday morning.\n\n* IMPACTS...Plan on slippery road conditions. The hazardous\nconditions could impact the Wednesday morning commute.",
-                "instruction": "Monitor the latest forecasts for updates on this situation.",
-                "response": "Prepare",
-                "parameters": {
-                    "AWIPSidentifier": [
-                        "WSWOHX"
-                    ],
-                    "WMOidentifier": [
-                        "WWUS44 KOHX 170311"
-                    ],
-                    "NWSheadline": [
-                        "WINTER STORM WATCH REMAINS IN EFFECT FROM TUESDAY EVENING THROUGH WEDNESDAY MORNING"
-                    ],
-                    "BLOCKCHANNEL": [
-                        "EAS",
-                        "NWEM",
-                        "CMAS"
-                    ],
-                    "EAS-ORG": [
-                        "WXR"
-                    ],
-                    "VTEC": [
-                        "/O.CON.KOHX.WS.A.0002.250219T0300Z-250219T1800Z/"
-                    ],
-                    "eventEndingTime": [
-                        "2025-02-19T18:00:00+00:00"
                     ]
                 }
             }
@@ -33667,340 +34571,6 @@
             }
         },
         {
-            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.004.1",
-            "type": "Feature",
-            "geometry": null,
-            "properties": {
-                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.004.1",
-                "@type": "wx:Alert",
-                "id": "urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.004.1",
-                "areaDesc": "Coastal Hancock; Coastal Washington",
-                "geocode": {
-                    "SAME": [
-                        "023009",
-                        "023029"
-                    ],
-                    "UGC": [
-                        "MEZ029",
-                        "MEZ030"
-                    ]
-                },
-                "affectedZones": [
-                    "https://api.weather.gov/zones/forecast/MEZ029",
-                    "https://api.weather.gov/zones/forecast/MEZ030"
-                ],
-                "references": [
-                    {
-                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.004.1",
-                        "identifier": "urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.004.1",
-                        "sender": "w-nws.webmaster@noaa.gov",
-                        "sent": "2025-02-16T15:23:00-05:00"
-                    }
-                ],
-                "sent": "2025-02-16T18:29:00-05:00",
-                "effective": "2025-02-16T18:29:00-05:00",
-                "onset": "2025-02-16T18:29:00-05:00",
-                "expires": "2025-02-17T02:30:00-05:00",
-                "ends": "2025-02-17T04:00:00-05:00",
-                "status": "Actual",
-                "messageType": "Update",
-                "category": "Met",
-                "severity": "Severe",
-                "certainty": "Likely",
-                "urgency": "Expected",
-                "event": "Winter Storm Warning",
-                "sender": "w-nws.webmaster@noaa.gov",
-                "senderName": "NWS Caribou ME",
-                "headline": "Winter Storm Warning issued February 16 at 6:29PM EST until February 17 at 4:00AM EST by NWS Caribou ME",
-                "description": "* WHAT...Heavy mixed precipitation expected. Total snow and sleet\naccumulations between 3 and 5 inches and ice accumulations between\ntwo tenths and one quarter of an inch. Winds gusting as high as 40\nmph.\n\n* WHERE...Coastal Hancock and Coastal Washington Counties.\n\n* WHEN...Until 4 AM EST Monday.\n\n* IMPACTS...Plan on slippery road conditions. Isolated power outages\nand minor tree damage due to the ice.",
-                "instruction": "A Winter Storm Warning means significant amounts of snow, sleet, and\nice will make travel extremely dangerous.\n\nThe latest road conditions for Maine can be obtained by going to\nnewengland511.org.",
-                "response": "Prepare",
-                "parameters": {
-                    "AWIPSidentifier": [
-                        "WSWCAR"
-                    ],
-                    "WMOidentifier": [
-                        "WWUS41 KCAR 162329"
-                    ],
-                    "NWSheadline": [
-                        "WINTER STORM WARNING REMAINS IN EFFECT UNTIL 4 AM EST MONDAY"
-                    ],
-                    "BLOCKCHANNEL": [
-                        "EAS",
-                        "NWEM",
-                        "CMAS"
-                    ],
-                    "EAS-ORG": [
-                        "WXR"
-                    ],
-                    "VTEC": [
-                        "/O.CON.KCAR.WS.W.0003.000000T0000Z-250217T0900Z/"
-                    ],
-                    "eventEndingTime": [
-                        "2025-02-17T09:00:00+00:00"
-                    ],
-                    "expiredReferences": [
-                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.02972719e41b27d0ee2f5505925fb8a86a1e21e0.002.1,2025-02-16T02:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8df1a99aca2457dc5577310c4648667e9a01d9d8.002.1,2025-02-15T21:26:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f2cb74e91b3d330412d5087bbadae7a83c55ca57.002.2,2025-02-15T15:47:00-05:00"
-                    ]
-                }
-            }
-        },
-        {
-            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.002.1",
-            "type": "Feature",
-            "geometry": null,
-            "properties": {
-                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.002.1",
-                "@type": "wx:Alert",
-                "id": "urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.002.1",
-                "areaDesc": "Central Penobscot; Southern Piscataquis; Northern Washington",
-                "geocode": {
-                    "SAME": [
-                        "023019",
-                        "023021",
-                        "023029"
-                    ],
-                    "UGC": [
-                        "MEZ011",
-                        "MEZ031",
-                        "MEZ032"
-                    ]
-                },
-                "affectedZones": [
-                    "https://api.weather.gov/zones/forecast/MEZ011",
-                    "https://api.weather.gov/zones/forecast/MEZ031",
-                    "https://api.weather.gov/zones/forecast/MEZ032"
-                ],
-                "references": [
-                    {
-                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.002.1",
-                        "identifier": "urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.002.1",
-                        "sender": "w-nws.webmaster@noaa.gov",
-                        "sent": "2025-02-16T15:23:00-05:00"
-                    }
-                ],
-                "sent": "2025-02-16T18:29:00-05:00",
-                "effective": "2025-02-16T18:29:00-05:00",
-                "onset": "2025-02-16T18:29:00-05:00",
-                "expires": "2025-02-17T02:30:00-05:00",
-                "ends": "2025-02-17T04:00:00-05:00",
-                "status": "Actual",
-                "messageType": "Update",
-                "category": "Met",
-                "severity": "Severe",
-                "certainty": "Likely",
-                "urgency": "Expected",
-                "event": "Winter Storm Warning",
-                "sender": "w-nws.webmaster@noaa.gov",
-                "senderName": "NWS Caribou ME",
-                "headline": "Winter Storm Warning issued February 16 at 6:29PM EST until February 17 at 4:00AM EST by NWS Caribou ME",
-                "description": "* WHAT...Heavy mixed precipitation expected. Total snow and sleet\naccumulations between 6 and 10 inches and ice accumulations around\na light glaze.\n\n* WHERE...Southern Piscataquis, Northern Washington, and Central\nPenobscot Counties.\n\n* WHEN...Until 4 AM EST Monday.\n\n* IMPACTS...Travel could be very difficult.",
-                "instruction": "A Winter Storm Warning means significant amounts of snow, sleet, and\nice will make travel extremely dangerous.\n\nThe latest road conditions for Maine can be obtained by going to\nnewengland511.org.",
-                "response": "Prepare",
-                "parameters": {
-                    "AWIPSidentifier": [
-                        "WSWCAR"
-                    ],
-                    "WMOidentifier": [
-                        "WWUS41 KCAR 162329"
-                    ],
-                    "NWSheadline": [
-                        "WINTER STORM WARNING REMAINS IN EFFECT UNTIL 4 AM EST MONDAY"
-                    ],
-                    "BLOCKCHANNEL": [
-                        "EAS",
-                        "NWEM",
-                        "CMAS"
-                    ],
-                    "EAS-ORG": [
-                        "WXR"
-                    ],
-                    "VTEC": [
-                        "/O.CON.KCAR.WS.W.0003.000000T0000Z-250217T0900Z/"
-                    ],
-                    "eventEndingTime": [
-                        "2025-02-17T09:00:00+00:00"
-                    ],
-                    "expiredReferences": [
-                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.02972719e41b27d0ee2f5505925fb8a86a1e21e0.003.1,2025-02-16T02:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8df1a99aca2457dc5577310c4648667e9a01d9d8.003.1,2025-02-15T21:26:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f2cb74e91b3d330412d5087bbadae7a83c55ca57.003.1,2025-02-15T15:47:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9fd3095cb25ea4637937046c10a83c246f26c553.001.1,2025-02-15T12:36:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0ab60ecd60ee4fd2e9379b5171b9cfe3afd74024.001.2,2025-02-15T02:58:00-05:00"
-                    ]
-                }
-            }
-        },
-        {
-            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.003.1",
-            "type": "Feature",
-            "geometry": null,
-            "properties": {
-                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.003.1",
-                "@type": "wx:Alert",
-                "id": "urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.003.1",
-                "areaDesc": "Southern Penobscot; Interior Hancock; Central Washington",
-                "geocode": {
-                    "SAME": [
-                        "023019",
-                        "023009",
-                        "023029"
-                    ],
-                    "UGC": [
-                        "MEZ015",
-                        "MEZ016",
-                        "MEZ017"
-                    ]
-                },
-                "affectedZones": [
-                    "https://api.weather.gov/zones/forecast/MEZ015",
-                    "https://api.weather.gov/zones/forecast/MEZ016",
-                    "https://api.weather.gov/zones/forecast/MEZ017"
-                ],
-                "references": [
-                    {
-                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.003.1",
-                        "identifier": "urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.003.1",
-                        "sender": "w-nws.webmaster@noaa.gov",
-                        "sent": "2025-02-16T15:23:00-05:00"
-                    }
-                ],
-                "sent": "2025-02-16T18:29:00-05:00",
-                "effective": "2025-02-16T18:29:00-05:00",
-                "onset": "2025-02-16T18:29:00-05:00",
-                "expires": "2025-02-17T02:30:00-05:00",
-                "ends": "2025-02-17T04:00:00-05:00",
-                "status": "Actual",
-                "messageType": "Update",
-                "category": "Met",
-                "severity": "Severe",
-                "certainty": "Likely",
-                "urgency": "Expected",
-                "event": "Winter Storm Warning",
-                "sender": "w-nws.webmaster@noaa.gov",
-                "senderName": "NWS Caribou ME",
-                "headline": "Winter Storm Warning issued February 16 at 6:29PM EST until February 17 at 4:00AM EST by NWS Caribou ME",
-                "description": "* WHAT...Heavy mixed precipitation expected. Total snow and sleet\naccumulations between 5 and 8 inches and ice accumulations up to\ntwo tenths of an inch. Wind gusts up to 35 mph.\n\n* WHERE...Central Washington, Interior Hancock, and Southern\nPenobscot Counties.\n\n* WHEN...Until 4 AM EST Monday.\n\n* IMPACTS...Plan on slippery road conditions. Isolated power outages\nand minor tree damage due to the ice.",
-                "instruction": "A Winter Storm Warning means significant amounts of snow, sleet, and\nice will make travel extremely dangerous.\n\nThe latest road conditions for Maine can be obtained by going to\nnewengland511.org.",
-                "response": "Prepare",
-                "parameters": {
-                    "AWIPSidentifier": [
-                        "WSWCAR"
-                    ],
-                    "WMOidentifier": [
-                        "WWUS41 KCAR 162329"
-                    ],
-                    "NWSheadline": [
-                        "WINTER STORM WARNING REMAINS IN EFFECT UNTIL 4 AM EST MONDAY"
-                    ],
-                    "BLOCKCHANNEL": [
-                        "EAS",
-                        "NWEM",
-                        "CMAS"
-                    ],
-                    "EAS-ORG": [
-                        "WXR"
-                    ],
-                    "VTEC": [
-                        "/O.CON.KCAR.WS.W.0003.000000T0000Z-250217T0900Z/"
-                    ],
-                    "eventEndingTime": [
-                        "2025-02-17T09:00:00+00:00"
-                    ],
-                    "expiredReferences": [
-                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.02972719e41b27d0ee2f5505925fb8a86a1e21e0.001.1,2025-02-16T02:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8df1a99aca2457dc5577310c4648667e9a01d9d8.001.1,2025-02-15T21:26:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f2cb74e91b3d330412d5087bbadae7a83c55ca57.001.2,2025-02-15T15:47:00-05:00"
-                    ]
-                }
-            }
-        },
-        {
-            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.001.1",
-            "type": "Feature",
-            "geometry": null,
-            "properties": {
-                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.001.1",
-                "@type": "wx:Alert",
-                "id": "urn:oid:2.49.0.1.840.0.bb5ddaefb2c939cf25d286fe01a1babc613e90f9.001.1",
-                "areaDesc": "Northwest Aroostook; Northeast Aroostook; Northern Somerset; Northern Piscataquis; Northern Penobscot; Southeast Aroostook; Central Piscataquis",
-                "geocode": {
-                    "SAME": [
-                        "023003",
-                        "023025",
-                        "023021",
-                        "023019"
-                    ],
-                    "UGC": [
-                        "MEZ001",
-                        "MEZ002",
-                        "MEZ003",
-                        "MEZ004",
-                        "MEZ005",
-                        "MEZ006",
-                        "MEZ010"
-                    ]
-                },
-                "affectedZones": [
-                    "https://api.weather.gov/zones/forecast/MEZ001",
-                    "https://api.weather.gov/zones/forecast/MEZ002",
-                    "https://api.weather.gov/zones/forecast/MEZ003",
-                    "https://api.weather.gov/zones/forecast/MEZ004",
-                    "https://api.weather.gov/zones/forecast/MEZ005",
-                    "https://api.weather.gov/zones/forecast/MEZ006",
-                    "https://api.weather.gov/zones/forecast/MEZ010"
-                ],
-                "references": [
-                    {
-                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.001.1",
-                        "identifier": "urn:oid:2.49.0.1.840.0.9f9a7381e95edd647c285b4f7f3486543acc42ab.001.1",
-                        "sender": "w-nws.webmaster@noaa.gov",
-                        "sent": "2025-02-16T15:23:00-05:00"
-                    }
-                ],
-                "sent": "2025-02-16T18:29:00-05:00",
-                "effective": "2025-02-16T18:29:00-05:00",
-                "onset": "2025-02-16T18:29:00-05:00",
-                "expires": "2025-02-17T02:30:00-05:00",
-                "ends": "2025-02-17T13:00:00-05:00",
-                "status": "Actual",
-                "messageType": "Update",
-                "category": "Met",
-                "severity": "Severe",
-                "certainty": "Likely",
-                "urgency": "Expected",
-                "event": "Winter Storm Warning",
-                "sender": "w-nws.webmaster@noaa.gov",
-                "senderName": "NWS Caribou ME",
-                "headline": "Winter Storm Warning issued February 16 at 6:29PM EST until February 17 at 1:00PM EST by NWS Caribou ME",
-                "description": "* WHAT...Heavy snow expected. Total snow accumulations between 10\nand 20 inches. The greatest accumulations across northern and\nnorthwest Aroostook County. Strongest winds gusting as high as 45\nmph on Monday.\n\n* WHERE...Portions of Central Highlands, Far Eastern, Far Northern,\nand North Woods Maine\n\n* WHEN...Until 1 PM EST Monday.\n\n* IMPACTS...Travel could be very difficult to impossible. Areas of\nblowing snow could significantly reduce visibility. The hazardous\nconditions will impact the Monday morning commute.\n\n* ADDITIONAL DETAILS...The worst of the blowing snow will be across\nthe agricultural open areas of Aroostook and Northern Penobscot\nCounties on Monday. Be prepared for localized whiteouts with near\nzero visibility creating extremely dangerous driving conditions.\nPotentially impacted roads include but not limited to...Routes 1,\n1A, 2, 10, 11, 89, 161, 163, 167 and 212.",
-                "instruction": "A Winter Storm Warning for snow means severe winter weather\nconditions will make travel extremely dangerous. If you must travel,\nkeep an extra flashlight, food, and water in your vehicle in case of\nan emergency.\n\nThe latest road conditions for Maine can be obtained by going to\nnewengland511.org.",
-                "response": "Prepare",
-                "parameters": {
-                    "AWIPSidentifier": [
-                        "WSWCAR"
-                    ],
-                    "WMOidentifier": [
-                        "WWUS41 KCAR 162329"
-                    ],
-                    "NWSheadline": [
-                        "WINTER STORM WARNING REMAINS IN EFFECT UNTIL 1 PM EST MONDAY"
-                    ],
-                    "BLOCKCHANNEL": [
-                        "EAS",
-                        "NWEM",
-                        "CMAS"
-                    ],
-                    "EAS-ORG": [
-                        "WXR"
-                    ],
-                    "VTEC": [
-                        "/O.CON.KCAR.WS.W.0003.000000T0000Z-250217T1800Z/"
-                    ],
-                    "eventEndingTime": [
-                        "2025-02-17T18:00:00+00:00"
-                    ],
-                    "expiredReferences": [
-                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.02972719e41b27d0ee2f5505925fb8a86a1e21e0.004.1,2025-02-16T02:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8df1a99aca2457dc5577310c4648667e9a01d9d8.004.1,2025-02-15T21:26:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f2cb74e91b3d330412d5087bbadae7a83c55ca57.004.1,2025-02-15T15:47:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9fd3095cb25ea4637937046c10a83c246f26c553.002.1,2025-02-15T12:36:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0ab60ecd60ee4fd2e9379b5171b9cfe3afd74024.002.2,2025-02-15T02:58:00-05:00"
-                    ]
-                }
-            }
-        },
-        {
             "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.885673e5a91eecaa33c6990c1196df631b01cc98.001.1",
             "type": "Feature",
             "geometry": {
@@ -52495,5 +53065,5 @@
         }
     ],
     "title": "Current watches, warnings, and advisories for United States land zones",
-    "updated": "2025-02-17T07:00:00+00:00"
+    "updated": "2025-02-17T07:10:19+00:00"
 }

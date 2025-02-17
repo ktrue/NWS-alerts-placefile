@@ -4,8 +4,8 @@
 ini_set('display_errors','0');
 
 /*
-*	Name:			    NWS_Placefile_Alerts.php
-*	Author(s):	  Mike Davis 0617	, Ken True saratoga-weather.org
+*	Name:			    NWS_Placefile_Alerts-own.php
+*	Author(s):	  Mike Davis 0617	, Ken True saratoga-weather.org - Modded by ELY M.  
 *	Description:	Reads NWS CAP1.1 ATOM RSS Alert Feeds for one or more states
 *                   and displays a GR2 placefile describing affected polygons.
 * rewritten to use api.weather.gov/alerts/active JSON from original XML by Ken True 29-Aug-2023
@@ -27,8 +27,9 @@ ini_set('display_errors','0');
 # Version 2.15 - 20-Oct-2023 - remove > 9999 limit with multi-pass simplify_RDP calls to prune points
 # Version 2.16 - 22-Oct-2023 - add debug and sce=view, correct severity sorting issue
 # Version 2.17 - 26-Oct-2023 - find crude centroid of NWS supplied alert polygons to position Icon
+# Version 2.18 - 17-Feb-2025 - added $description and $instructions and updated shapefiles php      
 
-$Version = "NWS_Placefile_Alerts.php - V2.17 - 26-Oct-2023 - saratoga-weather.org";
+$Version = "NWS_Placefile_Alerts.php - V2.18 - 17-Feb-2025 - saratoga-weather.org - Modded by ELY M.";
 # -----------------------------------------------
 # Settings:
 # excludes:
