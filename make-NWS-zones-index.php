@@ -52,8 +52,6 @@ $toDo = array( # list of shapefiles to index
 
 $outfile = 'NWS-zones-inc-202308-test.txt';
 
-
-//*/
   
 // March 5, 2024 files 
 $toDo = array( # list of shapefiles to index
@@ -65,6 +63,21 @@ $toDo = array( # list of shapefiles to index
 );
 
 $outfile = 'NWS-zones-inc-202403-test.txt';
+
+//*/
+
+// March 18, 2025 files 
+$toDo = array( # list of shapefiles to index
+# ID   Array     .shp file location
+	'F|fcstZones|./shapefiles/z_18mr25.shp',
+	'C|countyZones|./shapefiles/c_18mr25.shp',
+	'M|marineZones|./shapefiles/mz18mr25.shp',
+	'W|fireZones|./shapefiles/fz18mr25.shp',
+);
+
+$outfile = 'NWS-zones-inc-202503-test.txt';
+
+
 //*/
 
 #
