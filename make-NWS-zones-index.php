@@ -23,6 +23,7 @@
 #
 # Version 1.00 - 02-Sep-2023 - initial release
 # Version 1.01 - 16-Feb-2024 - update for March 5, 2024 shapefiles
+# Version 1,01 - 17-Mar-2025 - update for March 18, 2025 shapefiles
 #
 #------------------------------------------------------------------------------
 # Settings:
@@ -52,20 +53,9 @@ $toDo = array( # list of shapefiles to index
 
 $outfile = 'NWS-zones-inc-202308-test.txt';
 
-  
-// March 5, 2024 files 
-$toDo = array( # list of shapefiles to index
-# ID   Array     .shp file location
-	'F|fcstZones|./shapefiles/z_05mr24.shp',
-	'C|countyZones|./shapefiles/c_05mr24.shp',
-	'M|marineZones|./shapefiles/mz05mr24.shp',
-	'W|fireZones|./shapefiles/fz05mr24.shp',
-);
-
-$outfile = 'NWS-zones-inc-202403-test.txt';
 
 //*/
-
+  
 // March 18, 2025 files 
 $toDo = array( # list of shapefiles to index
 # ID   Array     .shp file location
@@ -76,14 +66,12 @@ $toDo = array( # list of shapefiles to index
 );
 
 $outfile = 'NWS-zones-inc-202503-test.txt';
-
-
 //*/
 
 #
 # end of settings
 #------------------------------------------------------------------------------
-$Version = "make-NWS-zones-index.php - V1.01 - 16-Feb-2024";
+$Version = "make-NWS-zones-index.php - V1.02 - 17-Mar-2025";
 
 header('Content-type: text/plain;charset=ISO-8859-1');
 include_once('NWStimeZones.php');
