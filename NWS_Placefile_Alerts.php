@@ -25,8 +25,9 @@ ini_set('display_errors','1');
 # Version 2.15 - 20-Oct-2023 - remove > 9999 limit with multi-pass simplify_RDP calls to prune points
 # Version 2.16 - 22-Oct-2023 - add debug and sce=view, correct severity sorting issue
 # Version 2.17 - 26-Oct-2023 - find crude centroid of NWS supplied alert polygons to position Icon
+# Version 2.18 - 24-Mar-2025 - fix Notice errata on calls to get_shape_coords not returning 3 values
 
-$Version = "NWS_Placefile_Alerts.php - V2.17 - 26-Oct-2023 - saratoga-weather.org";
+$Version = "NWS_Placefile_Alerts.php - V2.18 - 24-Mar-2025 - saratoga-weather.org";
 # -----------------------------------------------
 # Settings:
 # excludes:
@@ -890,7 +891,8 @@ function get_shape_coords ($zone) {
 	} else {
 		return(array(
 		"; get_shape_coords: '$zone' not found.\n",
-		"; get_shape_coords: '$zone' not found.\n") );
+		"; get_shape_coords: '$zone' not found.\n",
+   array()) );
 	}
 
   try {
@@ -913,7 +915,8 @@ function get_shape_coords ($zone) {
 				if ($Geometry->isDeleted()) {
 						return( array(
 						"; get_shape_coords -- deleted record idx=$idx\n",
-						"; get_shape_coords -- deleted record idx=$idx\n" ));
+						"; get_shape_coords -- deleted record idx=$idx\n",
+            array()));
 				}
 
 				$GDATA = $Geometry->getArray();
@@ -938,6 +941,7 @@ function get_shape_coords ($zone) {
 								return(array(
 								"; get_shape_coords: Do you want the Earth to change its rotation direction?!?\n",
 								"; get_shape_coords: Do you want the Earth to change its rotation direction?!?\n",
+                  array()
 								));
 								break;
 								
@@ -947,7 +951,7 @@ function get_shape_coords ($zone) {
 										. " Message: " . $e->getMessage()
 										. " Details: " . $e->getDetails() 
 										. "\n";
-								return(array($str,$str));
+								return(array($str,$str,array()));
 								break;
 				}
     }
@@ -957,7 +961,8 @@ function get_shape_coords ($zone) {
     */
 		return ( array(
 		  "; get_shape_coords: unable to open Shapefile $filename \n",
-		  "; get_shape_coords: unable to open Shapefile $filename \n"
+		  "; get_shape_coords: unable to open Shapefile $filename \n".
+      array()
 			));
   }
 	
